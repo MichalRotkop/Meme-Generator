@@ -11,13 +11,28 @@ function onInit() {
 }
 
 function renderMeme() {
-    // const imgUrl = getImgById(meme.selectedImgId).ur
+    // const imgUrl = getImgById(meme.selectedImgId).url
     // const meme = getMeme()
     const { selectedImgUrl: imgUrl, selectedLineIdx: idx, lines } = getMeme()
-    const { txt, lineWidth, color, outline, font, size } = lines[idx]
+    // const { txt, lineWidth, color, outline, font, size } = lines[idx]
+    // drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
 
-    drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
+    drawMeme(imgUrl, lines[idx])
 
+}
+
+function onSetLineTxt(val) {
+    setLineTxt(val)
+    renderMeme()
+}
+
+function drawMeme(imgUrl, {txt, lineWidth, color, outline, font, size} ) {
+    const img = new Image()
+    img.src = imgUrl
+    img.onload = () => {
+        coverCanvasWithImg(img)
+        drawText(txt, 100, 100, lineWidth, color, outline, font, size)
+    }
 }
 
 function drawText(text, x, y, lineWidth, color, outline, font, size) {
@@ -30,15 +45,6 @@ function drawText(text, x, y, lineWidth, color, outline, font, size) {
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
-}
-
-function drawMeme(imgUrl, txt, lineWidth, color, outline, font, size) {
-    const img = new Image()
-    img.src = imgUrl
-    img.onload = () => {
-        coverCanvasWithImg(img)
-        drawText(txt, 100, 100, lineWidth, color, outline, font, size)
-    }
 }
 
 // function drawImg(imgUrl) {

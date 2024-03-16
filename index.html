@@ -27,7 +27,10 @@
             <div class="canvas-container">
                 <canvas width="600" height="600" onclick="getCanvasCords(event)"></canvas>
             </div>
-            <section class="editor-tools"></section>
+            <section class="editor-tools">
+                <input class="txt-input" type="text" placeholder="Add text Here" oninput="onSetLineTxt(this.value)">
+
+            </section>
         </main>
     </section>
 

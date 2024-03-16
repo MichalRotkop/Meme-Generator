@@ -9,3 +9,8 @@ body {
 canvas {
     background-color: aliceblue;
 }
+
+.editor-tools {
+    width: 600px;
+    background-color: aliceblue;
+}
