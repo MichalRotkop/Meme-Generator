@@ -8,9 +8,10 @@
     <title>Meme Gen</title>
 </head>
 
-<body>
+<body onload="onInit()">
 
     <header>
+        <h1>Meme Gen</h1>
         <nav></nav>
     </header>
 
@@ -24,15 +25,18 @@
     <section class="editor-page">
         <main>
             <div class="canvas-container">
-                <canvas></canvas>
+                <canvas width="600" height="600" onclick="getCanvasCords(event)"></canvas>
             </div>
             <section class="editor-tools"></section>
         </main>
     </section>
 
+
     <footer></footer>
     
     <script src="js/main.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>
