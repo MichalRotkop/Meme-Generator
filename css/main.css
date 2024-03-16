@@ -11,6 +11,19 @@ canvas {
 }
 
 .editor-tools {
-    width: 600px;
+    height: 400px;
     background-color: aliceblue;
+}
+
+.editor-page {
+    background-color: lightgoldenrodyellow;
+}
+
+.gallery-page {
+    height: 100vh;
+    background-color: lightpink;
+
+}
+.hidden {
+    display: none;
 }
