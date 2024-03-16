@@ -12,24 +12,24 @@ function onChooseImg() {
     renderMeme()
 }
 
-function switchPageToEditor() {
-    const elGallery = document.querySelector('.gallery-page')
-    elGallery.classList.add('hidden')
-
-    const elEditor = document.querySelector('.editor-page')
-    elEditor.classList.remove('hidden')
-}
-
 function renderMeme() {
     // const imgUrl = getImgById(meme.selectedImgId).url
     // const meme = getMeme()
     const { selectedImgUrl: imgUrl, selectedLineIdx: idx, lines } = getMeme()
     // const { txt, lineWidth, color, outline, font, size } = lines[idx]
     // drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
-
+    
     drawMeme(imgUrl, lines[idx])
-
+    
 }
+
+    function switchPageToEditor() {
+        const elGallery = document.querySelector('.gallery-page')
+        elGallery.classList.add('hidden')
+    
+        const elEditor = document.querySelector('.editor-page')
+        elEditor.classList.remove('hidden')
+    }
 
 function onSetLineTxt(val) {
     setLineTxt(val)
@@ -55,6 +55,12 @@ function drawText(text, x, y, lineWidth, color, outline, font, size) {
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+}
+
+function onDownloadMeme(elLink) {
+    elLink.download = 'my-img'
+    const dataUrl = gElCanvas.toDataURL()
+    elLink.href = dataUrl
 }
 
 // function drawImg(imgUrl) {
