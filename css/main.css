@@ -16,12 +16,10 @@ canvas {
 }
 
 .editor-page {
-    background-color: lightgoldenrodyellow;
 }
 
 .gallery-page {
     height: 100vh;
-    background-color: lightpink;
 }
 
 .img-gallery-container {

@@ -7,7 +7,17 @@ function onChooseImg() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
+    switchPageToEditor()
+
     renderMeme()
+}
+
+function switchPageToEditor() {
+    const elGallery = document.querySelector('.gallery-page')
+    elGallery.classList.add('hidden')
+
+    const elEditor = document.querySelector('.editor-page')
+    elEditor.classList.remove('hidden')
 }
 
 function renderMeme() {
