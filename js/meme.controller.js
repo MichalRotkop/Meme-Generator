@@ -8,52 +8,36 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
 
     renderMeme()
-
-
-
 }
 
 function renderMeme() {
     // const imgUrl = getImgById(meme.selectedImgId).ur
     // const meme = getMeme()
     const { selectedImgUrl: imgUrl, selectedLineIdx: idx, lines } = getMeme()
-    // drawMeme(meme.selectedImgUrl)
-    // const txt = lines[idx].txt
-    const {txt,size,color,outline,font, lineWidth} = lines[idx]
-    drawMeme(imgUrl, txt)
+    const { txt, lineWidth, color, outline, font, size } = lines[idx]
 
-
-    // drawText(meme.lines[meme.selectedLineIdx].txt, x, y)
-    // drawText('Hi', 100, 100)
-
-
+    drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
 
 }
 
-function getCanvasCords(ev) {
-    console.log('ev.offsetX,ev.offsetY:', ev.offsetX, ev.offsetY)
-    drawText('Hi', ev.offsetX, ev.offsetY)
+function drawText(text, x, y, lineWidth, color, outline, font, size) {
+    // later maybe have separated func to set gCtx values
+    gCtx.lineWidth = lineWidth
+    gCtx.strokeStyle = outline
 
-    return { x: ev.offsetX, y: ev.offsetY }
-}
+    gCtx.fillStyle = color
+    gCtx.font = `${size}px ${font}`
 
-function drawText(text, x, y) {
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'white'
-
-    gCtx.fillStyle = 'lightsteelblue'
-
-    gCtx.font = '45px Arial'
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
 
-function drawMeme(imgUrl, txt) {
+function drawMeme(imgUrl, txt, lineWidth, color, outline, font, size) {
     const img = new Image()
     img.src = imgUrl
     img.onload = () => {
         coverCanvasWithImg(img)
-        drawText(txt, 100, 100)
+        drawText(txt, 100, 100, lineWidth, color, outline, font, size)
     }
 }
 

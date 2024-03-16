@@ -9,9 +9,9 @@ var gMeme = {
     lines: [
         {
             txt: 'I sometimes eat Falafel',
-            size: 20,
-            color: 'red',
-            outline: 'none',
+            size: 45,
+            color: 'white',
+            outline: 'orange',
             font: 'Arial',
             lineWidth: 2
         }
