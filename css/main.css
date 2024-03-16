@@ -22,8 +22,22 @@ canvas {
 .gallery-page {
     height: 100vh;
     background-color: lightpink;
+}
+
+.img-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    /* grid-auto-flow: dense; */
 
 }
+
+.img-gallery-container img {
+    width: 100%;
+    cursor: pointer;
+
+}
+
 .hidden {
     display: none;
 }

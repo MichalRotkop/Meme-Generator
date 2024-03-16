@@ -1,24 +1,28 @@
 'use strict'
 
 var gImgs = _createImgs()
-
-var gMeme = {
-    selectedImgId: 1,
-    selectedImgUrl: 'img/1.jpg',
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 45,
-            color: 'white',
-            outline: 'orange',
-            font: 'Arial',
-            lineWidth: 2
-        }
-    ]
-}
+var gMeme
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+
+function setImg(id) {
+    const img = getImgById(id)
+    gMeme = {
+        selectedImgId: img.id,
+        selectedImgUrl: img.url,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: '',
+                size: 45,
+                color: 'white',
+                outline: 'orange',
+                font: 'Arial',
+                lineWidth: 2
+            }
+        ]
+    }
+}
 
 function setLineTxt(val) {
     const { lines, selectedLineIdx: idx } = gMeme
@@ -31,6 +35,10 @@ function getMeme() {
 
 function getImgById(id) {
     return gImgs.find(img => img.id === id)
+}
+
+function getImgs() {
+    return gImgs
 }
 
 function _createImgs() {

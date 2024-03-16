@@ -3,7 +3,7 @@
 let gElCanvas
 let gCtx
 
-function onInit() {
+function onChooseImg() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
