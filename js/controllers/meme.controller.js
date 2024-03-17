@@ -32,6 +32,11 @@ function switchPageToEditor() {
     elEditor.classList.remove('hidden')
 }
 
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
+}
+
 function onAddLine() {
     addLine()
     renderMeme()

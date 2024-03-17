@@ -11,27 +11,43 @@ function setImg(id) {
         selectedImgId: img.id,
         selectedImgUrl: img.url,
         selectedLineIdx: 0,
-        lines: [
-            {
-                pos: { x: 100, y: 100 },
-                txt: 'Add Text Here',
-                size: 45,
-                color: 'white',
-                outline: 'black',
-                font: 'Arial',
-                lineWidth: 1,
-            }
-        ]
+        lines: []
     }
+    _createFirstLine()
 }
 
 function addLine() {
     const { lines, selectedLineIdx } = gMeme
-    const newLine = structuredClone(lines[selectedLineIdx])
-    newLine.pos.y += 40
-
-    lines.push(newLine)
+    if (!lines.length) {
+        _createFirstLine()
+    } else if (lines.length === 1) {
+        const newLine = structuredClone(lines[0])
+        newLine.pos.y = 500
+        lines.push(newLine)
+    } else if (lines.length >= 2) {
+        const newLine = structuredClone(lines[selectedLineIdx])
+        newLine.pos.y = 100 + (lines.length - 1) * 40
+        lines.push(newLine)
+    }
     gMeme.selectedLineIdx = lines.length - 1
+}
+
+function switchLine() {
+    
+
+}
+
+function _createFirstLine() {
+    const firstLine = {
+        pos: { x: 100, y: 100 },
+        txt: 'Add Text Here',
+        size: 45,
+        color: 'white',
+        outline: 'black',
+        font: 'Arial',
+        lineWidth: 1,
+    }
+    gMeme.lines.push(firstLine)
 }
 
 function setLineTxt(val) {
