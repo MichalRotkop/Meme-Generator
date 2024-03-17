@@ -33,8 +33,9 @@ function addLine() {
 }
 
 function switchLine() {
-    
-
+    const { lines, selectedLineIdx } = gMeme
+    if (selectedLineIdx === lines.length - 1) gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx++
 }
 
 function _createFirstLine() {
