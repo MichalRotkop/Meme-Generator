@@ -36,7 +36,6 @@ function onSwitchLine() {
     switchLine()
     renderInputLine()
     renderMeme()
-
     // setTimeout(() => markSelectedTxt(), 1)
 }
 
