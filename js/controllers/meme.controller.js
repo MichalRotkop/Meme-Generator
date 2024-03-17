@@ -20,6 +20,8 @@ function renderMeme() {
 
     // drawMeme(imgUrl, lines, lines[currIdx].pos)
     drawMeme(selectedImgUrl, lines)
+    setTimeout(() => markSelectedTxt(), 1)
+
 }
 
 function switchPageToEditor() {
@@ -34,6 +36,16 @@ function onSwitchLine() {
     switchLine()
     renderInputLine()
     renderMeme()
+
+    // setTimeout(() => markSelectedTxt(), 1)
+}
+
+function onAddLine() {
+    addLine()
+    renderInputLine()
+    renderMeme()
+
+    // setTimeout(() => markSelectedTxt(), 1)
 }
 
 function renderInputLine() {
@@ -41,10 +53,21 @@ function renderInputLine() {
     elInput.value = getSelectedTxt()
 }
 
-function onAddLine() {
-    addLine()
-    renderInputLine()
-    renderMeme()
+function markSelectedTxt() {
+    let txt = gCtx.measureText(getSelectedTxt())
+    let txtHeight = getSelectedLineFontSize()
+    var { x, y } = getSelectedLinePos()
+
+    x -= 10
+    y -= txtHeight
+
+    const width = txt.width + 20
+    const height = txtHeight + 10
+
+    gCtx.lineWidth = 4
+    gCtx.strokeStyle = 'black'
+
+    gCtx.strokeRect(x, y, width,height)
 }
 
 function onSetLineTxt(val) {

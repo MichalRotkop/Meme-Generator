@@ -65,6 +65,16 @@ function getSelectedTxt() {
     return lines[selectedLineIdx].txt
 }
 
+function getSelectedLineFontSize() {
+    const { lines, selectedLineIdx } = gMeme
+    return lines[selectedLineIdx].size
+}
+
+function getSelectedLinePos() {
+    const { lines, selectedLineIdx } = gMeme
+    return lines[selectedLineIdx].pos
+}
+
 function resetSelectedLine() {
     // for when done with line - reset color? 
 }
