@@ -13,15 +13,25 @@ function setImg(id) {
         selectedLineIdx: 0,
         lines: [
             {
-                txt: '',
+                pos: { x: 100, y: 100 },
+                txt: 'Add Text Here',
                 size: 45,
                 color: 'white',
-                outline: 'orange',
+                outline: 'black',
                 font: 'Arial',
-                lineWidth: 2
+                lineWidth: 1,
             }
         ]
     }
+}
+
+function addLine() {
+    const { lines, selectedLineIdx } = gMeme
+    const newLine = structuredClone(lines[selectedLineIdx])
+    newLine.pos.y += 40
+
+    lines.push(newLine)
+    gMeme.selectedLineIdx = lines.length - 1
 }
 
 function setLineTxt(val) {
@@ -32,16 +42,15 @@ function setLineTxt(val) {
 function setFontSize(diff) {
     const { lines, selectedLineIdx: idx } = gMeme
     lines[idx].size += diff
-
 }
 
 function setStrokeColor(val) {
-    const {selectedLineIdx,lines} = gMeme
+    const { selectedLineIdx, lines } = gMeme
     lines[selectedLineIdx].outline = val
 }
 
 function setFillColor(val) {
-    const {selectedLineIdx,lines} = gMeme
+    const { selectedLineIdx, lines } = gMeme
     lines[selectedLineIdx].color = val
 }
 

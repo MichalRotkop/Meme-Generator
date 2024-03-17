@@ -29,7 +29,10 @@
                 <canvas width="600" height="600"></canvas>
             </div>
             <section class="editor-tools">
-                <input class="txt-input" type="text" placeholder="Add text Here" oninput="onSetLineTxt(this.value)">
+                <input class="txt-input" type="text" value="Add Text Here" oninput="onSetLineTxt(this.value)">
+                <div class="input-editor">
+                    <button class="input-btn add-line" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                </div>
                 <div class="font-editor">
                     <button class="font-btn big-font" onclick="onSetFontSize(this)" data-size="2"><i class="fa-solid fa-font"></i></button>
                     <button class="font-btn small-font" onclick="onSetFontSize(this)" data-size="-2"><i class="fa-solid fa-font"></i></button>

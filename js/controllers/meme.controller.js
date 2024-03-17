@@ -15,11 +15,12 @@ function onChooseImg() {
 function renderMeme() {
     // const imgUrl = getImgById(meme.selectedImgId).url
     // const meme = getMeme()
-    const { selectedImgUrl: imgUrl, selectedLineIdx: idx, lines } = getMeme()
+    const { selectedImgUrl, lines } = getMeme()
     // const { txt, lineWidth, color, outline, font, size } = lines[idx]
     // drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
 
-    drawMeme(imgUrl, lines[idx])
+    // drawMeme(imgUrl, lines, lines[currIdx].pos)
+    drawMeme(selectedImgUrl, lines)
 
 }
 
@@ -29,6 +30,11 @@ function switchPageToEditor() {
 
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.remove('hidden')
+}
+
+function onAddLine() {
+    addLine()
+    renderMeme()
 }
 
 function onSetLineTxt(val) {
@@ -56,25 +62,27 @@ function onSetFillColor(val) {
     renderMeme()
 }
 
-function drawMeme(imgUrl, { txt, lineWidth, color, outline, font, size }) {
+function drawMeme(imgUrl, lines) {
+    console.log('lines:', lines)
     const img = new Image()
     img.src = imgUrl
     img.onload = () => {
         coverCanvasWithImg(img)
-        drawText(txt, 100, 100, lineWidth, color, outline, font, size)
+        lines.forEach(line => drawText(line))
     }
 }
 
-function drawText(text, x, y, lineWidth, color, outline, font, size) {
+function drawText({ txt, pos, lineWidth, color, outline, font, size }) {
     // later maybe have separated func to set gCtx values
+
     gCtx.lineWidth = lineWidth
     gCtx.strokeStyle = outline
 
     gCtx.fillStyle = color
     gCtx.font = `${size}px ${font}`
 
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+    gCtx.fillText(txt, pos.x, pos.y)
+    gCtx.strokeText(txt, pos.x, pos.y)
 }
 
 function onDownloadMeme(elLink) {
@@ -82,13 +90,6 @@ function onDownloadMeme(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
 }
-
-// function drawImg(imgUrl) {
-//     const img = new Image()
-//     img.src = imgUrl
-//     img.onload = () =>
-//         coverCanvasWithImg(img)
-// }
 
 function coverCanvasWithImg(elImg) {
     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
