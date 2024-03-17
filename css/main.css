@@ -18,6 +18,23 @@ canvas {
 .editor-page {
 }
 
+.font-btn, .font-btn input{
+    cursor: pointer;
+
+}
+
+.big-font::after {
+    content: '+';
+    font-size: 1.8em;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.small-font::after {
+    content: '-';
+    font-size: 1.8em;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 
 .font-btn.fill-clr, .font-btn.stroke-clr {
     position: relative;
@@ -30,7 +47,7 @@ canvas {
     left: 0;
 }
 
-.fa-solid, .fa-palette{
+.fa-solid {
     font-size: 2em;
 }
 

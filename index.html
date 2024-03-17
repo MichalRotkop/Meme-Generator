@@ -31,6 +31,8 @@
             <section class="editor-tools">
                 <input class="txt-input" type="text" placeholder="Add text Here" oninput="onSetLineTxt(this.value)">
                 <div class="font-editor">
+                    <button class="font-btn big-font" onclick="onSetFontSize(this)" data-size="2"><i class="fa-solid fa-font"></i></button>
+                    <button class="font-btn small-font" onclick="onSetFontSize(this)" data-size="-2"><i class="fa-solid fa-font"></i></button>
                     <button class="font-btn stroke-clr">
                         <label for="stroke-clr"><i class="fa-solid fa-palette"></i></label>
                         <input class="stroke-clr-input" type="color" id="stroke-clr" onchange="onSetStrokeColor(this.value)">

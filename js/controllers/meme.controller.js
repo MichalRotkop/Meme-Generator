@@ -36,6 +36,12 @@ function onSetLineTxt(val) {
     renderMeme()
 }
 
+function onSetFontSize(elBtn) {
+    const diff = +elBtn.dataset.size
+    setFontSize(diff)
+    renderMeme()
+}
+
 function onSetStrokeColor(val) {
     const elFont = document.querySelector('.fa-palette')
     elFont.style.color = val

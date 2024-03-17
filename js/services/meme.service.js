@@ -29,6 +29,12 @@ function setLineTxt(val) {
     lines[idx].txt = val
 }
 
+function setFontSize(diff) {
+    const { lines, selectedLineIdx: idx } = gMeme
+    lines[idx].size += diff
+
+}
+
 function setStrokeColor(val) {
     const {selectedLineIdx,lines} = gMeme
     lines[selectedLineIdx].outline = val
