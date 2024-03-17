@@ -20,15 +20,17 @@ function addLine() {
     const { lines, selectedLineIdx } = gMeme
     if (!lines.length) {
         _createFirstLine()
+        gMeme.selectedLineIdx = 0
+        return
     } else if (lines.length === 1) {
-        const newLine = structuredClone(lines[0])
+        var newLine = structuredClone(lines[0])
         newLine.pos.y = 500
-        lines.push(newLine)
     } else if (lines.length >= 2) {
-        const newLine = structuredClone(lines[selectedLineIdx])
+        var newLine = structuredClone(lines[selectedLineIdx])
         newLine.pos.y = 100 + (lines.length - 1) * 40
-        lines.push(newLine)
     }
+    newLine.txt = 'Add Text Here'
+    lines.push(newLine)
     gMeme.selectedLineIdx = lines.length - 1
 }
 
@@ -36,19 +38,6 @@ function switchLine() {
     const { lines, selectedLineIdx } = gMeme
     if (selectedLineIdx === lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx++
-}
-
-function _createFirstLine() {
-    const firstLine = {
-        pos: { x: 100, y: 100 },
-        txt: 'Add Text Here',
-        size: 45,
-        color: 'white',
-        outline: 'black',
-        font: 'Arial',
-        lineWidth: 1,
-    }
-    gMeme.lines.push(firstLine)
 }
 
 function setLineTxt(val) {
@@ -71,6 +60,11 @@ function setFillColor(val) {
     lines[selectedLineIdx].color = val
 }
 
+function getSelectedTxt() {
+    const { lines, selectedLineIdx } = gMeme
+    return lines[selectedLineIdx].txt
+}
+
 function resetSelectedLine() {
     // for when done with line - reset color? 
 }
@@ -85,6 +79,19 @@ function getImgById(id) {
 
 function getImgs() {
     return gImgs
+}
+
+function _createFirstLine() {
+    const firstLine = {
+        pos: { x: 100, y: 100 },
+        txt: 'Add Text Here',
+        size: 45,
+        color: 'white',
+        outline: 'black',
+        font: 'Arial',
+        lineWidth: 1,
+    }
+    gMeme.lines.push(firstLine)
 }
 
 function _createImgs() {

@@ -8,7 +8,6 @@ function onChooseImg() {
     gCtx = gElCanvas.getContext('2d')
 
     switchPageToEditor()
-
     renderMeme()
 }
 
@@ -21,7 +20,6 @@ function renderMeme() {
 
     // drawMeme(imgUrl, lines, lines[currIdx].pos)
     drawMeme(selectedImgUrl, lines)
-
 }
 
 function switchPageToEditor() {
@@ -34,11 +32,18 @@ function switchPageToEditor() {
 
 function onSwitchLine() {
     switchLine()
+    renderInputLine()
     renderMeme()
+}
+
+function renderInputLine() {
+    const elInput = document.querySelector('.txt-input')
+    elInput.value = getSelectedTxt()
 }
 
 function onAddLine() {
     addLine()
+    renderInputLine()
     renderMeme()
 }
 
@@ -68,7 +73,6 @@ function onSetFillColor(val) {
 }
 
 function drawMeme(imgUrl, lines) {
-    console.log('lines:', lines)
     const img = new Image()
     img.src = imgUrl
     img.onload = () => {
@@ -79,7 +83,6 @@ function drawMeme(imgUrl, lines) {
 
 function drawText({ txt, pos, lineWidth, color, outline, font, size }) {
     // later maybe have separated func to set gCtx values
-
     gCtx.lineWidth = lineWidth
     gCtx.strokeStyle = outline
 
