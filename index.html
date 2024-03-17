@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/2af9379292.js" crossorigin="anonymous"></script>
     <title>Meme Gen</title>
 </head>
 
@@ -29,6 +30,16 @@
             </div>
             <section class="editor-tools">
                 <input class="txt-input" type="text" placeholder="Add text Here" oninput="onSetLineTxt(this.value)">
+                <div class="font-editor">
+                    <button class="font-btn stroke-clr">
+                        <label for="stroke-clr"><i class="fa-solid fa-palette"></i></label>
+                        <input class="stroke-clr-input" type="color" id="stroke-clr" onchange="onSetStrokeColor(this.value)">
+                    </button>
+                    <button class="font-btn fill-clr">
+                        <label for="fill-clr"><i class="fa-solid fa-fill-drip"></i></label>
+                        <input class="fill-clr-input" type="color" id="fill-clr" onchange="onSetFillColor(this.value)">
+                    </button>
+                </div>
                 <div class="editor-links">
                     <ul>
                         <li><a class="download" href="#" onclick="onDownloadMeme(this)">Download</a></li>
@@ -40,7 +51,7 @@
 
 
     <footer></footer>
-    
+
     <script src="js/main.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>

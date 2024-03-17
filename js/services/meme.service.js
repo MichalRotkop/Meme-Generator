@@ -29,6 +29,20 @@ function setLineTxt(val) {
     lines[idx].txt = val
 }
 
+function setStrokeColor(val) {
+    const {selectedLineIdx,lines} = gMeme
+    lines[selectedLineIdx].outline = val
+}
+
+function setFillColor(val) {
+    const {selectedLineIdx,lines} = gMeme
+    lines[selectedLineIdx].color = val
+}
+
+function resetSelectedLine() {
+    // for when done with line - reset color? 
+}
+
 function getMeme() {
     return gMeme
 }

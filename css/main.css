@@ -18,6 +18,22 @@ canvas {
 .editor-page {
 }
 
+
+.font-btn.fill-clr, .font-btn.stroke-clr {
+    position: relative;
+    
+}
+.stroke-clr-input, .fill-clr-input {
+    position: absolute;
+    opacity: 0;
+    bottom: -3px;
+    left: 0;
+}
+
+.fa-solid, .fa-palette{
+    font-size: 2em;
+}
+
 .gallery-page {
     height: 100vh;
 }
