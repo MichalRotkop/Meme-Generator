@@ -35,6 +35,12 @@ function addLine() {
     gMeme.selectedLineIdx = lines.length - 1
 }
 
+function deleteLine() {
+    const { lines, selectedLineIdx } = gMeme
+    lines.splice(selectedLineIdx, 1)
+    gMeme.selectedLineIdx--
+}
+
 function setSelectedLineIdx(offsetX, offsetY) {
     const lineIdx = gMeme.lines.findIndex(line => {
         var { x, y, width, height } = line.markPos

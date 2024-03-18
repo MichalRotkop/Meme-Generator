@@ -41,8 +41,14 @@ function onAddLine() {
     addLine()
     renderEditorInputs()
     renderMeme()
+}
 
-    setTimeout(() => markSelectedTxt(), 1)
+function onDeleteLine() {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
+    deleteLine()
+    renderEditorInputs()
+    renderMeme()
 }
 
 function renderEditorInputs() {
