@@ -35,7 +35,7 @@ function addLine() {
     gMeme.selectedLineIdx = lines.length - 1
 }
 
-function setSelectedLineIdxOnClick(offsetX, offsetY) {
+function setSelectedLineIdx(offsetX, offsetY) {
     const lineIdx = gMeme.lines.findIndex(line => {
         var { x, y, width, height } = line.markPos
         return (offsetX >= x && offsetX <= (width + x) &&
@@ -77,6 +77,16 @@ function setFillColor(val) {
 function getSelectedTxt() {
     const { lines, selectedLineIdx } = gMeme
     return lines[selectedLineIdx].txt
+}
+
+function getStrokeColor() {
+    const { selectedLineIdx, lines } = gMeme
+    return lines[selectedLineIdx].outline
+}
+
+function getFillColor() {
+    const { selectedLineIdx, lines } = gMeme
+    return lines[selectedLineIdx].color
 }
 
 // function getSelectedLineFontSize() {

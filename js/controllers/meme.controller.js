@@ -7,6 +7,7 @@ function onChooseImg() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
+    setEventListeners()
     switchPageToEditor()
     renderMeme()
 }
@@ -26,30 +27,49 @@ function switchPageToEditor() {
     elEditor.classList.remove('hidden')
 }
 
+function setEventListeners() {
+    gElCanvas.addEventListener('click',onMemeClick)
+}
+
 function onSwitchLine() {
     switchLine()
-    renderInputLine()
+    renderEditorInputs()
     renderMeme()
 }
 
 function onAddLine() {
     addLine()
-    renderInputLine()
+    renderEditorInputs()
     renderMeme()
 
     setTimeout(() => markSelectedTxt(), 1)
 }
 
-function renderInputLine() {
+function renderEditorInputs() {
     const elInput = document.querySelector('.txt-input')
+    const elStrokeClr = document.querySelector('.fa-palette')
+    const elFillClr = document.querySelector('.fa-fill-drip')
+    
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) {
+        elInput.value = ''
+        elStrokeClr.style.color = 'black'
+        elFillClr.style.color = 'black'
+        return
+    } 
+    
     elInput.value = getSelectedTxt()
+    elStrokeClr.style.color = getStrokeColor()
+    elFillClr.style.color = getFillColor()
 }
 
 function onMemeClick(ev) {
     const { offsetX, offsetY } = ev
     // console.log('offsetX:', offsetX, 'offsetY:', offsetY);
 
-    setSelectedLineIdxOnClick(offsetX, offsetY)
+    setSelectedLineIdx(offsetX, offsetY)
+    renderEditorInputs()
+
     renderMeme()
 }
 
@@ -64,27 +84,29 @@ function markSelectedTxt() {
 }
 
 function onSetLineTxt(val) {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
     setLineTxt(val)
     renderMeme()
 }
 
 function onSetFontSize(elBtn) {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
     const diff = +elBtn.dataset.size
     setFontSize(diff)
     renderMeme()
 }
 
 function onSetStrokeColor(val) {
-    const elFont = document.querySelector('.fa-palette')
-    elFont.style.color = val
     setStrokeColor(val)
+    renderEditorInputs()
     renderMeme()
 }
 
 function onSetFillColor(val) {
-    const elFont = document.querySelector('.fa-fill-drip')
-    elFont.style.color = val
     setFillColor(val)
+    renderEditorInputs()
     renderMeme()
 }
 
