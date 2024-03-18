@@ -26,7 +26,8 @@ function addLine() {
         var newLine = structuredClone(lines[0])
         newLine.pos.y = 500
     } else if (lines.length >= 2) {
-        var newLine = structuredClone(lines[selectedLineIdx])
+        if (selectedLineIdx === -1) var newLine = structuredClone(lines[lines.length - 1])
+        else var newLine = structuredClone(lines[selectedLineIdx])
         newLine.pos.y = 100 + (lines.length - 1) * 40
     }
     newLine.txt = 'Add Text Here'
@@ -34,9 +35,17 @@ function addLine() {
     gMeme.selectedLineIdx = lines.length - 1
 }
 
-function saveTxtMarkPos(x,y,width,height) {
-    const { lines, selectedLineIdx } = gMeme
-    lines[selectedLineIdx].markPos = {x,y,width,height}
+function setSelectedLineIdxOnClick(offsetX, offsetY) {
+    const lineIdx = gMeme.lines.findIndex(line => {
+        var { x, y, width, height } = line.markPos
+        return (offsetX >= x && offsetX <= (width + x) &&
+            offsetY >= y && offsetY <= (height + y))
+    })
+    gMeme.selectedLineIdx = lineIdx
+}
+
+function saveTxtMarkPos(x, y, width, height, idx) {
+    gMeme.lines[idx].markPos = { x, y, width, height }
 }
 
 function switchLine() {
@@ -70,19 +79,19 @@ function getSelectedTxt() {
     return lines[selectedLineIdx].txt
 }
 
-function getSelectedLineFontSize() {
-    const { lines, selectedLineIdx } = gMeme
-    return lines[selectedLineIdx].size
-}
+// function getSelectedLineFontSize() {
+//     const { lines, selectedLineIdx } = gMeme
+//     return lines[selectedLineIdx].size
+// }
 
-function getSelectedLinePos() {
-    const { lines, selectedLineIdx } = gMeme
-    return lines[selectedLineIdx].pos
-}
+// function getSelectedLinePos() {
+//     const { lines, selectedLineIdx } = gMeme
+//     return lines[selectedLineIdx].pos
+// }
 
 function getMarkPos() {
     const { lines, selectedLineIdx } = gMeme
-    return lines[selectedLineIdx].markPos
+    return (selectedLineIdx === -1) ? null : lines[selectedLineIdx].markPos
 }
 
 function resetSelectedLine() {

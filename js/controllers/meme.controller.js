@@ -12,17 +12,10 @@ function onChooseImg() {
 }
 
 function renderMeme() {
-    // const imgUrl = getImgById(meme.selectedImgId).url
-    // const meme = getMeme()
     const { selectedImgUrl, lines } = getMeme()
-    // const { txt, lineWidth, color, outline, font, size } = lines[idx]
-    // drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
 
     drawMeme(selectedImgUrl, lines)
     setTimeout(() => markSelectedTxt(), 1)
-
-    // fix mark when changing font size
-
 }
 
 function switchPageToEditor() {
@@ -37,7 +30,6 @@ function onSwitchLine() {
     switchLine()
     renderInputLine()
     renderMeme()
-    // setTimeout(() => markSelectedTxt(), 1)
 }
 
 function onAddLine() {
@@ -53,21 +45,18 @@ function renderInputLine() {
     elInput.value = getSelectedTxt()
 }
 
-function setTxtMarkPos() {
-    let txt = gCtx.measureText(getSelectedTxt())
-    let txtHeight = getSelectedLineFontSize()
-    var { x, y } = getSelectedLinePos()
+function onMemeClick(ev) {
+    const { offsetX, offsetY } = ev
+    // console.log('offsetX:', offsetX, 'offsetY:', offsetY);
 
-    x -= 10
-    y -= txtHeight
-    const width = txt.width + 20
-    const height = txtHeight + 15
-
-    saveTxtMarkPos(x, y, width, height)
+    setSelectedLineIdxOnClick(offsetX, offsetY)
+    renderMeme()
 }
 
 function markSelectedTxt() {
-    const { x, y, width, height } = getMarkPos()
+    const markPos = getMarkPos()
+    if (!markPos) return
+    const { x, y, width, height } = markPos
     gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
 
@@ -104,11 +93,11 @@ function drawMeme(imgUrl, lines) {
     img.src = imgUrl
     img.onload = () => {
         coverCanvasWithImg(img)
-        lines.forEach(line => drawText(line))
+        lines.forEach((line, idx) => drawText(line, idx))
     }
 }
 
-function drawText({ txt, pos, lineWidth, color, outline, font, size }) {
+function drawText({ txt, pos, lineWidth, color, outline, font, size }, idx) {
     // later maybe have separated func to set gCtx values
     gCtx.lineWidth = lineWidth
     gCtx.strokeStyle = outline
@@ -119,7 +108,20 @@ function drawText({ txt, pos, lineWidth, color, outline, font, size }) {
     gCtx.fillText(txt, pos.x, pos.y)
     gCtx.strokeText(txt, pos.x, pos.y)
 
-    setTxtMarkPos()
+    setTxtMarkPos(txt, size, pos, idx)
+}
+
+function setTxtMarkPos(txt, size, pos, idx) {
+    let txtMeasure = gCtx.measureText(txt)
+    let txtHeight = size
+    var { x, y } = pos
+
+    x -= 10
+    y -= txtHeight
+    const width = txtMeasure.width + 20
+    const height = txtHeight + 15
+
+    saveTxtMarkPos(x, y, width, height, idx)
 }
 
 function onDownloadMeme(elLink) {
