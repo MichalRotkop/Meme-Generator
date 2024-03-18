@@ -71,7 +71,6 @@ function renderEditorInputs() {
 
 function onMemeClick(ev) {
     const { offsetX, offsetY } = ev
-    // console.log('offsetX:', offsetX, 'offsetY:', offsetY);
 
     setSelectedLineIdx(offsetX, offsetY)
     renderEditorInputs()
