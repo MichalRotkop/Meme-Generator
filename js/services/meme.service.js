@@ -34,6 +34,11 @@ function addLine() {
     gMeme.selectedLineIdx = lines.length - 1
 }
 
+function saveTxtMarkPos(x,y,width,height) {
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].markPos = {x,y,width,height}
+}
+
 function switchLine() {
     const { lines, selectedLineIdx } = gMeme
     if (selectedLineIdx === lines.length - 1) gMeme.selectedLineIdx = 0
@@ -75,6 +80,11 @@ function getSelectedLinePos() {
     return lines[selectedLineIdx].pos
 }
 
+function getMarkPos() {
+    const { lines, selectedLineIdx } = gMeme
+    return lines[selectedLineIdx].markPos
+}
+
 function resetSelectedLine() {
     // for when done with line - reset color? 
 }
@@ -94,6 +104,7 @@ function getImgs() {
 function _createFirstLine() {
     const firstLine = {
         pos: { x: 100, y: 100 },
+        markPos: {},
         txt: 'Add Text Here',
         size: 45,
         color: 'white',

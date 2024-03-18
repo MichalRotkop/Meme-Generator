@@ -18,9 +18,10 @@ function renderMeme() {
     // const { txt, lineWidth, color, outline, font, size } = lines[idx]
     // drawMeme(imgUrl, txt, lineWidth, color, outline, font, size)
 
-    // drawMeme(imgUrl, lines, lines[currIdx].pos)
     drawMeme(selectedImgUrl, lines)
     setTimeout(() => markSelectedTxt(), 1)
+
+    // fix mark when changing font size
 
 }
 
@@ -44,7 +45,7 @@ function onAddLine() {
     renderInputLine()
     renderMeme()
 
-    // setTimeout(() => markSelectedTxt(), 1)
+    setTimeout(() => markSelectedTxt(), 1)
 }
 
 function renderInputLine() {
@@ -52,21 +53,25 @@ function renderInputLine() {
     elInput.value = getSelectedTxt()
 }
 
-function markSelectedTxt() {
+function setTxtMarkPos() {
     let txt = gCtx.measureText(getSelectedTxt())
     let txtHeight = getSelectedLineFontSize()
     var { x, y } = getSelectedLinePos()
 
     x -= 10
     y -= txtHeight
-
     const width = txt.width + 20
-    const height = txtHeight + 10
+    const height = txtHeight + 15
 
-    gCtx.lineWidth = 4
+    saveTxtMarkPos(x, y, width, height)
+}
+
+function markSelectedTxt() {
+    const { x, y, width, height } = getMarkPos()
+    gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
 
-    gCtx.strokeRect(x, y, width,height)
+    gCtx.strokeRect(x, y, width, height)
 }
 
 function onSetLineTxt(val) {
@@ -113,6 +118,8 @@ function drawText({ txt, pos, lineWidth, color, outline, font, size }) {
 
     gCtx.fillText(txt, pos.x, pos.y)
     gCtx.strokeText(txt, pos.x, pos.y)
+
+    setTxtMarkPos()
 }
 
 function onDownloadMeme(elLink) {
