@@ -3,6 +3,7 @@
 let gElCanvas
 let gCtx
 
+
 function onChooseImg() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -31,6 +32,18 @@ function switchPageToEditor() {
 
 function setEventListeners() {
     gElCanvas.addEventListener('click', onMemeClick)
+    window.addEventListener('keypress', onTypeKeyboard)
+}
+
+function onTypeKeyboard() {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) {
+        return
+    } else {
+        const elInput = document.querySelector('.txt-input')
+        elInput.focus()
+        elInput.setSelectionRange(elInput.value.length, elInput.value.length)
+    }
 }
 
 function onSwitchLine() {
@@ -95,8 +108,8 @@ function renderEditorInputs() {
 
 function onMemeClick(ev) {
     const { offsetX, offsetY } = ev
-
     setSelectedLineIdx(offsetX, offsetY)
+
     renderEditorInputs()
     renderMeme()
 }
