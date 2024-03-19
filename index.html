@@ -15,7 +15,7 @@
         <h1>Meme Gen</h1>
         <nav></nav>
     </header>
-    
+
     <section class="gallery-page">
         <main>
             <section class="filter-bar"></section>
@@ -31,16 +31,26 @@
             <section class="editor-tools">
                 <input class="txt-input" type="text" value="Add Text Here" oninput="onSetLineTxt(this.value)">
                 <div class="input-editor">
-                    <button class="input-btn switch-line" onclick="onSwitchLine()"><i class="fa-solid fa-right-left fa-rotate-90"></i></button>
+                    <button class="input-btn switch-line" onclick="onSwitchLine()"><i
+                            class="fa-solid fa-right-left fa-rotate-90"></i></button>
                     <button class="input-btn add-line" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
-                    <button class="input-btn delete-line" onclick="onDeleteLine()"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="input-btn delete-line" onclick="onDeleteLine()"><i
+                            class="fa-solid fa-trash-can"></i></button>
                 </div>
                 <div class="font-editor">
-                    <button class="font-btn big-font" onclick="onSetFontSize(this)" data-size="2"><i class="fa-solid fa-font"></i></button>
-                    <button class="font-btn small-font" onclick="onSetFontSize(this)" data-size="-2"><i class="fa-solid fa-font"></i></button>
+                    <button class="font-btn big-font" onclick="onSetFontSize(this)" data-size="2"><i
+                            class="fa-solid fa-font"></i></button>
+                    <button class="font-btn small-font" onclick="onSetFontSize(this)" data-size="-2"><i
+                            class="fa-solid fa-font"></i></button>
+
+                    <select class="font-select" onchange="onSetFontType(this.value)">
+                        <option value="select font">Select Font</option>
+                    </select>
+
                     <button class="font-btn stroke-clr">
                         <label for="stroke-clr"><i class="fa-solid fa-palette"></i></label>
-                        <input class="stroke-clr-input" type="color" id="stroke-clr" onchange="onSetStrokeColor(this.value)">
+                        <input class="stroke-clr-input" type="color" id="stroke-clr"
+                            onchange="onSetStrokeColor(this.value)">
                     </button>
                     <button class="font-btn fill-clr">
                         <label for="fill-clr"><i class="fa-solid fa-fill-drip"></i></label>
@@ -55,7 +65,6 @@
             </section>
         </main>
     </section>
-
 
     <footer></footer>
 

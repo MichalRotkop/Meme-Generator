@@ -4,6 +4,7 @@ var gImgs = _createImgs()
 var gMeme
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI','monospace','cursive']
 
 function setImg(id) {
     const img = getImgById(id)
@@ -38,7 +39,9 @@ function addLine() {
 function deleteLine() {
     const { lines, selectedLineIdx } = gMeme
     lines.splice(selectedLineIdx, 1)
-    gMeme.selectedLineIdx--
+
+    if (selectedLineIdx === 0 && lines.length >= 1) gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx--
 }
 
 function setSelectedLineIdx(offsetX, offsetY) {
@@ -61,13 +64,18 @@ function switchLine() {
 }
 
 function setLineTxt(val) {
-    const { lines, selectedLineIdx: idx } = gMeme
-    lines[idx].txt = val
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].txt = val
+}
+
+function setFontType(val) {
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].font = val
 }
 
 function setFontSize(diff) {
-    const { lines, selectedLineIdx: idx } = gMeme
-    lines[idx].size += diff
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].size += diff
 }
 
 function setStrokeColor(val) {
@@ -93,6 +101,15 @@ function getStrokeColor() {
 function getFillColor() {
     const { selectedLineIdx, lines } = gMeme
     return lines[selectedLineIdx].color
+}
+
+function getSelectedFont() {
+    const { selectedLineIdx, lines } = gMeme
+    return lines[selectedLineIdx].font
+}
+
+function getFonts() {
+    return FONTS
 }
 
 // function getSelectedLineFontSize() {
@@ -134,7 +151,7 @@ function _createFirstLine() {
         size: 45,
         color: 'white',
         outline: 'black',
-        font: 'Arial',
+        font: 'Impact',
         lineWidth: 1,
     }
     gMeme.lines.push(firstLine)

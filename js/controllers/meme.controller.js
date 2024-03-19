@@ -10,12 +10,14 @@ function onChooseImg() {
     setEventListeners()
     switchPageToEditor()
     renderMeme()
+    renderFonts()
 }
 
 function renderMeme() {
     const { selectedImgUrl, lines } = getMeme()
 
     drawMeme(selectedImgUrl, lines)
+
     setTimeout(() => markSelectedTxt(), 1)
 }
 
@@ -28,10 +30,12 @@ function switchPageToEditor() {
 }
 
 function setEventListeners() {
-    gElCanvas.addEventListener('click',onMemeClick)
+    gElCanvas.addEventListener('click', onMemeClick)
 }
 
 function onSwitchLine() {
+    const { lines } = getMeme()
+    if (lines.length === 0) return
     switchLine()
     renderEditorInputs()
     renderMeme()
@@ -51,22 +55,42 @@ function onDeleteLine() {
     renderMeme()
 }
 
+function renderFonts() {
+    const fonts = getFonts()
+    const strHtmls = fonts.map(font => `<option value="${font.toLowerCase()}">${font}</option>`)
+
+    const elSelect = document.querySelector('.font-select')
+    elSelect.innerHTML += strHtmls.join('')
+}
+
+function onSetFontType(val) {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
+
+    setFontType(val)
+    renderEditorInputs()
+    renderMeme()
+}
+
 function renderEditorInputs() {
     const elInput = document.querySelector('.txt-input')
     const elStrokeClr = document.querySelector('.fa-palette')
     const elFillClr = document.querySelector('.fa-fill-drip')
-    
+    const elFont = document.querySelector('.font-select')
+
     const { selectedLineIdx } = getMeme()
     if (selectedLineIdx === -1) {
         elInput.value = ''
         elStrokeClr.style.color = 'black'
         elFillClr.style.color = 'black'
+        elFont.value = "select font"
         return
-    } 
-    
+    }
+
     elInput.value = getSelectedTxt()
     elStrokeClr.style.color = getStrokeColor()
     elFillClr.style.color = getFillColor()
+    elFont.value = getSelectedFont().toLowerCase()
 }
 
 function onMemeClick(ev) {
@@ -74,7 +98,6 @@ function onMemeClick(ev) {
 
     setSelectedLineIdx(offsetX, offsetY)
     renderEditorInputs()
-
     renderMeme()
 }
 
@@ -104,12 +127,16 @@ function onSetFontSize(elBtn) {
 }
 
 function onSetStrokeColor(val) {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
     setStrokeColor(val)
     renderEditorInputs()
     renderMeme()
 }
 
 function onSetFillColor(val) {
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
     setFillColor(val)
     renderEditorInputs()
     renderMeme()
