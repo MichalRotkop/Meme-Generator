@@ -198,7 +198,6 @@ function drawMeme(imgUrl, lines) {
 }
 
 function drawText({ txt, pos, lineWidth, color, outline, font, size }, idx) {
-    // later maybe have separated func to set gCtx values
     gCtx.lineWidth = lineWidth
     gCtx.strokeStyle = outline
 
