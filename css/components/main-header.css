@@ -1,0 +1,17 @@
+.main-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 20px minmax(260px, 1fr) 20px;
+
+    grid-column: 1/-1;
+
+    /* height: 70px; */
+}
+
+.main-header-content {
+    display: flex;
+    grid-column: 2;
+
+    background-image: linear-gradient(-86deg, #50c39b 0, #138098 100%);
+
+}

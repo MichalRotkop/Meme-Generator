@@ -90,9 +90,7 @@ function setFillColor(val) {
 
 function updateLineXPos(x){
     const { selectedLineIdx, lines } = gMeme
-    console.log('old x:',lines[selectedLineIdx].pos.x)
     lines[selectedLineIdx].pos.x = x
-    console.log('new x:',lines[selectedLineIdx].pos.x)
 }
 
 function getSelectedTxt() {

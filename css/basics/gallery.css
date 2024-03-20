@@ -1,0 +1,10 @@
+.gallery-page {
+    grid-column: 2;
+}
+
+.img-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    grid-auto-flow: dense;
+}

@@ -3,13 +3,18 @@
 }
 
 html {
-    font-family: montserrat-regular;
-    color: var(--clr-base);
+    font-family: poppins;
+    color: var(--clr--2);
 }
 
 body {
+    display: grid;
+    grid-template-columns: 20px minmax(260px, 1fr) 20px;
+    /* grid-template-columns: minmax(60px, 1fr) minmax(auto, 1600px) minmax(60px, 1fr); */
+
+
     margin: 0; 
-    background-color: var(--clr--1);
+    background-color: var(--clr-1);
 }
 
 img {

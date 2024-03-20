@@ -12,14 +12,28 @@
 
 <body onload="onInit()">
 
-    <header>
-        <h1>Meme Gen</h1>
-        <nav></nav>
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
+    <header class="main-header">
+        <div class="main-header-content">
+            <h1 class="logo">Meme Gen</h1>
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li><button class="nav-btn">Saved</button></li>
+                    <li><button class="nav-btn">Gallery</button></li>
+                    <li><button class="nav-btn">Randomize</button></li>
+                </ul>
+            </nav>
+            <button class="hamburger-btn" type="button" onclick="toggleMenu()">☰</button>
+        </div>
     </header>
 
     <section class="gallery-page">
         <main>
-            <section class="filter-bar"></section>
+            <section class="filter-bar">
+                <div class="filter-containter"></div>
+                <div class="keywords-containter"></div>
+            </section>
             <section class="img-gallery-container"></section>
         </main>
     </section>
@@ -44,9 +58,12 @@
                     <button class="font-btn small-font" onclick="onSetFontSize(this)" data-size="-2"><i
                             class="fa-solid fa-font"></i></button>
 
-                    <button class="font-btn align-left" onclick="onAlignTxt(this)" data-dir="left"><i class="fa-solid fa-align-left"></i></button>
-                    <button class="font-btn align-center" onclick="onAlignTxt(this)" data-dir="center"><i class="fa-solid fa-align-center"></i></button>
-                    <button class="font-btn align-right" onclick="onAlignTxt(this)" data-dir="right"><i class="fa-solid fa-align-right"></i></button>
+                    <button class="font-btn align-left" onclick="onAlignTxt(this)" data-dir="left"><i
+                            class="fa-solid fa-align-left"></i></button>
+                    <button class="font-btn align-center" onclick="onAlignTxt(this)" data-dir="center"><i
+                            class="fa-solid fa-align-center"></i></button>
+                    <button class="font-btn align-right" onclick="onAlignTxt(this)" data-dir="right"><i
+                            class="fa-solid fa-align-right"></i></button>
 
                     <select class="font-select" onchange="onSetFontType(this.value)">
                         <option value="select font">Select Font</option>
