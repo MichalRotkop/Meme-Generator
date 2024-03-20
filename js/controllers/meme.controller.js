@@ -1,6 +1,7 @@
 'use strict'
 
 let gElCanvas
+var gCanvasWidth
 let gCtx
 
 function onChooseImg() {
@@ -15,7 +16,6 @@ function onChooseImg() {
 
 function renderMeme() {
     const { selectedImgUrl, lines } = getMeme()
-
     drawMeme(selectedImgUrl, lines)
 
     setTimeout(() => markSelectedTxt(), 10)
@@ -32,6 +32,13 @@ function switchPageToEditor() {
 function setEventListeners() {
     gElCanvas.addEventListener('click', onMemeClick)
     window.addEventListener('keypress', onTypeKeyboard)
+    window.addEventListener('resize', () => resizeCanvas())
+}
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth
+    renderMeme()
 }
 
 function onTypeKeyboard() {
@@ -107,6 +114,8 @@ function renderEditorInputs() {
 
 function onMemeClick(ev) {
     const { offsetX, offsetY } = ev
+    console.log('offsetX, offsetY:', offsetX, offsetY)
+
     setSelectedLineIdx(offsetX, offsetY)
 
     renderEditorInputs()
@@ -123,6 +132,30 @@ function markSelectedTxt() {
     // gCtx.strokeStyle = gIsDownloaded ? 'transparent ':'black'
 
     gCtx.strokeRect(x, y, width, height)
+}
+
+function onAlignTxt(elBtn) {
+    const { selectedLineIdx, lines } = getMeme()
+    if (selectedLineIdx === -1) return
+
+    const { txt } = lines[selectedLineIdx]
+    const dir = elBtn.dataset.dir
+    const txtWidth = gCtx.measureText(txt).width
+    var newX
+
+    switch (dir) {
+        case 'left':
+            newX = 20
+            break;
+        case 'center':
+            newX = (gElCanvas.width / 2) - (txtWidth / 2)
+            break;
+        case 'right':
+            newX = gElCanvas.width - 20 - txtWidth
+            break;
+    }
+    updateLineXPos(newX)
+    renderMeme()
 }
 
 function onSetLineTxt(val) {
@@ -194,7 +227,6 @@ function setTxtMarkPos(txt, size, pos, idx) {
 
 function renderMemeForDownload() {
     const { selectedImgUrl, lines } = getMeme()
-
     drawMeme(selectedImgUrl, lines)
 }
 
@@ -211,9 +243,14 @@ function onDownloadMeme() {
         newLink.download = `mymeme_${selectedImgId}`
 
         newLink.click()
-        
     }, 100);
 }
+
+// function coverCanvasWithImg(elImg) {
+//     gCanvasWidth = gElCanvas.width
+//     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gCanvasWidth
+//     gCtx.drawImage(elImg, 0, 0, gCanvasWidth, gElCanvas.height)
+// }
 
 function coverCanvasWithImg(elImg) {
     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width

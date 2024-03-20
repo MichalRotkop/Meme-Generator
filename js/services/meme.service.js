@@ -88,6 +88,13 @@ function setFillColor(val) {
     lines[selectedLineIdx].color = val
 }
 
+function updateLineXPos(x){
+    const { selectedLineIdx, lines } = gMeme
+    console.log('old x:',lines[selectedLineIdx].pos.x)
+    lines[selectedLineIdx].pos.x = x
+    console.log('new x:',lines[selectedLineIdx].pos.x)
+}
+
 function getSelectedTxt() {
     const { lines, selectedLineIdx } = gMeme
     return lines[selectedLineIdx].txt
