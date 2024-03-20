@@ -130,7 +130,6 @@ function markSelectedTxt() {
     gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
     // gCtx.strokeStyle = gIsDownloaded ? 'transparent ':'black'
-
     gCtx.strokeRect(x, y, width, height)
 }
 

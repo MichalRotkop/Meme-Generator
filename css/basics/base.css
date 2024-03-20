@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: montserrat-regular;
+    color: var(--clr-base);
+}
+
+body {
+    margin: 0; 
+    background-color: var(--clr--1);
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+li,button,a {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
