@@ -43,6 +43,10 @@
                     <button class="font-btn small-font" onclick="onSetFontSize(this)" data-size="-2"><i
                             class="fa-solid fa-font"></i></button>
 
+                    <button class="font-btn align-left" onclick="onAlignTxt(this)" data-dir="left"><i class="fa-solid fa-align-left"></i></button>
+                    <button class="font-btn align-center" onclick="onAlignTxt(this)" data-dir="center"><i class="fa-solid fa-align-center"></i></button>
+                    <button class="font-btn align-right" onclick="onAlignTxt(this)" data-dir="right"><i class="fa-solid fa-align-right"></i></button>
+
                     <select class="font-select" onchange="onSetFontType(this.value)">
                         <option value="select font">Select Font</option>
                     </select>
@@ -59,7 +63,7 @@
                 </div>
                 <div class="editor-links">
                     <ul>
-                        <li><a class="download" href="#" onclick="onDownloadMeme(this)">Download</a></li>
+                        <li><a class="download" href="#" onclick="onDownloadMeme()">Download</a></li>
                     </ul>
                 </div>
             </section>

@@ -131,6 +131,10 @@ function resetSelectedLine() {
     // for when done with line - reset color? 
 }
 
+function unMarkLine() {
+    gMeme.selectedLineIdx = -1
+}
+
 function getMeme() {
     return gMeme
 }

@@ -3,7 +3,6 @@
 let gElCanvas
 let gCtx
 
-
 function onChooseImg() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -19,7 +18,7 @@ function renderMeme() {
 
     drawMeme(selectedImgUrl, lines)
 
-    setTimeout(() => markSelectedTxt(), 1)
+    setTimeout(() => markSelectedTxt(), 10)
 }
 
 function switchPageToEditor() {
@@ -118,8 +117,10 @@ function markSelectedTxt() {
     const markPos = getMarkPos()
     if (!markPos) return
     const { x, y, width, height } = markPos
+
     gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
+    // gCtx.strokeStyle = gIsDownloaded ? 'transparent ':'black'
 
     gCtx.strokeRect(x, y, width, height)
 }
@@ -191,10 +192,27 @@ function setTxtMarkPos(txt, size, pos, idx) {
     saveTxtMarkPos(x, y, width, height, idx)
 }
 
-function onDownloadMeme(elLink) {
-    elLink.download = 'my-img'
-    const dataUrl = gElCanvas.toDataURL()
-    elLink.href = dataUrl
+function renderMemeForDownload() {
+    const { selectedImgUrl, lines } = getMeme()
+
+    drawMeme(selectedImgUrl, lines)
+}
+
+function onDownloadMeme() {
+    unMarkLine()
+    renderMeme()
+
+    setTimeout(() => {
+        const { selectedImgId } = getMeme()
+        const dataUrl = gElCanvas.toDataURL()
+        // newLink to solve unsuccessful download with existing link
+        const newLink = document.createElement('a')
+        newLink.href = dataUrl
+        newLink.download = `mymeme_${selectedImgId}`
+
+        newLink.click()
+        
+    }, 100);
 }
 
 function coverCanvasWithImg(elImg) {
