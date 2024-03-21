@@ -10,6 +10,7 @@
 }
 
 .editor-tools {
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,6 +39,7 @@
 
 canvas,
 .editor-tools {
+    grid-column: 2;
     border-radius: 5%;
     border: 3px solid var(--clr-2);
 }
