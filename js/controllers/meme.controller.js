@@ -10,6 +10,7 @@ function onChooseImg() {
 
     setEventListeners()
     switchPages()
+    resizeCanvas()
     renderMeme()
     renderFonts()
 }
