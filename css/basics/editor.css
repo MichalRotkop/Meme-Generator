@@ -1,0 +1,182 @@
+.editor-page {
+    grid-column: 2;
+}
+
+.editor-container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 40px;
+}
+
+.editor-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    max-height: 380x;
+    background-color: var(--clr-base);
+    padding: 10px;
+}
+
+.font-editor {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1em;
+
+    background-color: var(--clr-3);
+    /* width: 100%; */
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.canvas-container {
+    max-width: 600px;
+    min-width: 200px;
+}
+
+canvas,
+.editor-tools {
+    border-radius: 5%;
+    border: 3px solid var(--clr-2);
+}
+
+/* INPUT */
+
+.txt-input {
+    height: var(--editor-btn-size-m);
+    /* width: 80%; */
+    background-color: var(--clr--3);
+    padding-inline-start: 50px;
+    padding-inline: 50px;
+    font-size: var(--editor-btn-font-size-l);
+    border: none;
+    border-radius: 1.75rem;
+    text-align: start;
+}
+
+.editor-tools .txt-input:focus {
+    outline: 3px solid var(--clr-3);
+}
+
+/* BUTTONS */
+
+.input-btn {
+    color: var(--clr--4);
+}
+
+.font-select {
+    grid-column: 1/4;
+    background-color: var(--clr--3);
+    font-size: var(--editor-btn-font-size-l);
+    border: none;
+    border-radius: 10px;
+}
+
+.input-btn,
+.font-btn {
+    width: var(--editor-btn-size-m);
+    height: var(--editor-btn-size-m);
+    font-size: var(--editor-btn-font-size-m);
+    border: none;
+    border-radius: 10px;
+}
+
+/*  */
+.font-btn, .font-btn input{
+    cursor: pointer;
+}
+
+.big-font::after {
+    content: '+';
+    font-size: 1.8em;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.small-font::after {
+    content: '-';
+    font-size: 1.8em;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.font-btn.fill-clr, .font-btn.stroke-clr {
+    position: relative;
+    
+}
+.stroke-clr-input, .fill-clr-input {
+    position: absolute;
+    opacity: 0;
+    bottom: -3px;
+    left: 0;
+}
+
+.fa-solid {
+    font-size: 2em;
+}
+/*  */
+
+.input-btn.switch-line {
+    background-image: linear-gradient(-38deg, #66c4dc 0%, #0c98bb 100%);
+    box-shadow: 1px 5px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+}
+
+.input-btn.add-line {
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+    box-shadow: 1px 5px 0 #0b864e, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+}
+
+.input-btn.delete-line {
+    background-image: linear-gradient(-38deg, #cf1d37 0%, #f05036 100%);
+    box-shadow: 1px 5px 0 #8c0606, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+}
+
+/* SAVE LINKS */
+
+.editor-links {
+    display: flex;
+    /* align-self: center; */
+    justify-content: center;
+
+    width: 100%;
+}
+
+.editor-links ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    height: 30px;
+    /* gap: 10px; */
+    width: max-content;
+    /* width: 100%; */
+}
+
+.editor-links li {
+
+}
+
+.editor-links li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--editor-btn-font-size-l);
+    
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: var(--clr--4);
+}
+
+.editor-links .download {
+    box-shadow: 1px 6px 0 #6b169c, inset 0 5px 0 #b863e9;
+    background-color: #9920df;
+}
+
+.editor-links .download::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f019';
+    padding-inline-end: 10px;
+}

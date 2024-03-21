@@ -2,6 +2,7 @@
 
 @media (max-width:740px) {
 
+    /* MAIN HEADER */
     .main-nav {
         position: fixed;
         right: 0;
@@ -61,6 +62,12 @@
         pointer-events: none;
     }
 
+    /* EDITOR */
+    .editor-container {
+        flex-direction: column;
+    
+    }
+
 }
 
 /* MEDIUM */
@@ -71,3 +78,5 @@
         display: none;
     }
 }
+
+/* LARGE */

@@ -8,4 +8,11 @@
     grid-template-columns: repeat(2,1fr);
     gap: 10px;
     grid-auto-flow: dense;
+    border-radius: 5%;
+}
+
+.img-gallery-container img {
+    /* width: 100%; */
+    cursor: pointer;
+    border-radius: 5%;
 }

@@ -5,6 +5,7 @@
 
     grid-column: 1/-1;
     background-image: var(--clr-grad);
+    margin-bottom: 10px;
 
 }
 
@@ -40,7 +41,7 @@
     width: 140px;
     border-bottom: 5px solid transparent;
     font-size: 1.3em;
-    color: var(--clr--2);
+    color: var(--clr--4);
 
 }
 

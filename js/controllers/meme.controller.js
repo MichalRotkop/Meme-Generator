@@ -9,7 +9,7 @@ function onChooseImg() {
     gCtx = gElCanvas.getContext('2d')
 
     setEventListeners()
-    switchPageToEditor()
+    switchPages()
     renderMeme()
     renderFonts()
 }
@@ -21,12 +21,12 @@ function renderMeme() {
     setTimeout(() => markSelectedTxt(), 10)
 }
 
-function switchPageToEditor() {
+function switchPages() {
     const elGallery = document.querySelector('.gallery-page')
-    elGallery.classList.add('hidden')
+    elGallery.classList.toggle('hidden')
 
     const elEditor = document.querySelector('.editor-page')
-    elEditor.classList.remove('hidden')
+    elEditor.classList.toggle('hidden')
 }
 
 function setEventListeners() {
@@ -114,7 +114,7 @@ function renderEditorInputs() {
 
 function onMemeClick(ev) {
     const { offsetX, offsetY } = ev
-    console.log('offsetX, offsetY:', offsetX, offsetY)
+    // console.log('offsetX, offsetY:', offsetX, offsetY)
 
     setSelectedLineIdx(offsetX, offsetY)
 

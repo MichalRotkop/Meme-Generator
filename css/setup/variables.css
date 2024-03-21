@@ -1,10 +1,20 @@
 :root {
+    --clr-3: #19a59f;
+    --clr-2: rgb(64, 89, 85);
     --clr-1: #22252c;
     --clr-base: #383b42;
-    --clr--1: #C2C1C1;
-    --clr--2:#f8fcfc;
+    --clr--1: red;
+    --clr--2: #C2C1C1;
+    --clr--3: #ebeef3;
+    --clr--4: #f8fcfc;
 
     --clr-grad: linear-gradient(-86deg, #50c39b 0, #138098 100%);
+
+    --editor-btn-size-m: 3rem;
+    --editor-btn-size-l: 3.675rem;
+    --editor-btn-font-size-m: 0.6em;
+    --editor-btn-font-size-l: 1em;
+    
 
 
 }

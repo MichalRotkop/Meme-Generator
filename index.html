@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/2af9379292.js" crossorigin="anonymous"></script>
     <title>Meme Gen</title>
@@ -18,7 +17,7 @@
             <h1 class="logo">Meme Gen</h1>
             <nav class="main-nav">
                 <ul class="main-nav-list">
-                    <li><button class="nav-btn">Gallery</button></li>
+                    <li><button class="nav-btn" onclick="switchPages()">Gallery</button></li>
                     <li><button class="nav-btn">Randomize</button></li>
                     <li><button class="nav-btn">Saved</button></li>
                 </ul>
@@ -38,7 +37,7 @@
     </section>
 
     <section class="editor-page hidden">
-        <main>
+        <main class="editor-container">
             <div class="canvas-container">
                 <canvas width="600" height="600"></canvas>
             </div>
