@@ -4,14 +4,58 @@
     grid-template-columns: 20px minmax(260px, 1fr) 20px;
 
     grid-column: 1/-1;
+    background-image: var(--clr-grad);
 
-    /* height: 70px; */
 }
 
 .main-header-content {
     display: flex;
-    grid-column: 2;
+    justify-content: space-between;
+    align-items: center;
 
-    background-image: linear-gradient(-86deg, #50c39b 0, #138098 100%);
+    grid-column: 2;
+    height: 70px;
+}
+
+.main-header .logo {
+    margin-inline-start: 10px;
+    font-size: 1.8em;
+}
+
+
+.main-nav-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+
+    /* justify-content: space-between; */
+}
+
+.nav-btn {
+    border: none;
+    background-color: transparent;
+    height: 70px;
+
+    width: 140px;
+    border-bottom: 5px solid transparent;
+    font-size: 1.3em;
+    color: var(--clr--2);
+
+}
+
+.hamburger-btn {
+    background-color: transparent;
+    border: none;
+
+    color: white;
+    scale: 2;
+    margin-inline-end: 10px;
+
+
+    /* background-color: white;
+    color: #50c39b;
+    border-radius: 50%; */
+    /* width: 20px; */
 
 }

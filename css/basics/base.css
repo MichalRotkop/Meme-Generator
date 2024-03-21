@@ -3,7 +3,6 @@
 }
 
 html {
-    font-family: poppins;
     color: var(--clr--2);
 }
 
@@ -15,6 +14,10 @@ body {
 
     margin: 0; 
     background-color: var(--clr-1);
+}
+
+html, button, input,select {
+    font-family: poppins, sans-serif;
 }
 
 img {
@@ -35,4 +38,8 @@ li,button,a {
 
 .hidden {
     display: none;
+}
+
+.menu-open {
+    
 }

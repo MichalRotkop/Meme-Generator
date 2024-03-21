@@ -1,5 +1,6 @@
 .gallery-page {
     grid-column: 2;
+    background-color: var(--clr-base);
 }
 
 .img-gallery-container {
