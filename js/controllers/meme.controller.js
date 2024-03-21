@@ -25,7 +25,6 @@ function switchPages() {
     const elGallery = document.querySelector('.gallery-page')
     const elEditor = document.querySelector('.editor-page')
 
-    if (elEditor.classList.contains('hidden')) return
     elGallery.classList.toggle('hidden')
     elEditor.classList.toggle('hidden')
 }
