@@ -9,9 +9,9 @@ function onChooseImg() {
     gCtx = gElCanvas.getContext('2d')
 
     setEventListeners()
-    switchPages()
     renderMeme()
     renderFonts()
+    switchToEditor()
 }
 
 function renderMeme() {
@@ -21,13 +21,11 @@ function renderMeme() {
     setTimeout(() => markSelectedTxt(), 10)
 }
 
-function switchPages() {
-    const elGallery = document.querySelector('.gallery-page')
-    elGallery.classList.toggle('hidden')
-
-    const elEditor = document.querySelector('.editor-page')
-    elEditor.classList.toggle('hidden')
-}
+// function drawNum3() {
+//     var randomIdx = getRandomInt(0, gNums.length)
+//     var res = gNums.splice(randomIdx, 1)
+//     return res[0]
+// }
 
 function setEventListeners() {
     gElCanvas.addEventListener('click', onMemeClick)
