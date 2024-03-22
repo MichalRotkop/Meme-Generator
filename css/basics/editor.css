@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
 }
 
 .editor-tools {
@@ -14,27 +14,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 
-    max-height: 380x;
+    /* max-height: 380x; */
     background-color: var(--clr-base);
-    padding: 10px;
+    padding: 10px 3px;
+    width: max-content;
+
 }
 
 .font-editor {
     display: grid;
+    justify-items: center;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1em;
+    gap: 0.4em;
 
     background-color: var(--clr-3);
     /* width: 100%; */
-    padding: 1em;
+    padding: 1em 0.7em;
     border-radius: 10px;
 }
 
 .canvas-container {
     max-width: 600px;
-    min-width: 200px;
+    /* min-width: 200px; */
+}
+
+canvas {
+    width: 100%;
 }
 
 canvas,
@@ -136,49 +143,52 @@ canvas,
 
 /* SAVE LINKS */
 
-.editor-links {
-    display: flex;
-    /* align-self: center; */
-    justify-content: center;
-
-    width: 100%;
-}
-
 .editor-links ul {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    height: 30px;
-    /* gap: 10px; */
-    width: max-content;
-    /* width: 100%; */
-}
-
-.editor-links li {
-
+    gap: 5px;
+    padding: 0;
+    margin: 4px 1px;
 }
 
 .editor-links li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: var(--editor-btn-font-size-l);
-    
     border-radius: 15px;
     padding: 5px 10px;
     color: var(--clr--4);
 }
 
-.editor-links .download {
-    box-shadow: 1px 6px 0 #6b169c, inset 0 5px 0 #b863e9;
+.editor-links .download-link {
+    box-shadow: 1px 5px 0 #6b169c, inset 0 5px 0 #b863e9;
     background-color: #9920df;
 }
 
-.editor-links .download::before {
+.editor-links .download-link::before {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f019';
+    padding-inline-end: 10px;
+}
+
+.editor-links .save-link {
+    box-shadow: 1px 5px 0 #318164, inset 0 5px 0 #7eceb0;
+    background-color: #46b98f;
+}
+
+.editor-links .save-link::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f0c7';
+    padding-inline-end: 10px;
+}
+
+.editor-links .share-link {
+    box-shadow: 1px 5px 0 #165b9c, inset 0 5px 0 #63a8e9;
+    background-color: #2083df;
+}
+
+.editor-links .share-link::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f064';
     padding-inline-end: 10px;
 }

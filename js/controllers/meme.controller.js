@@ -216,9 +216,8 @@ function setTxtMarkPos(txt, size, pos, idx) {
     saveTxtMarkPos(x, y, width, height, idx)
 }
 
-function renderMemeForDownload() {
-    const { selectedImgUrl, lines } = getMeme()
-    drawMeme(selectedImgUrl, lines)
+function onSaveMeme() {
+    
 }
 
 function onDownloadMeme() {
