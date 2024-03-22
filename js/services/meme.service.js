@@ -15,24 +15,24 @@ function setImg(id,txt, color, outline, font) {
         selectedLineIdx: 0,
         lines: []
     }
-    _createFirstLine(txt, color, outline, font)
+    _createLine(txt, color, outline, font)
 }
 
-function addLine() {
+function addLine(randomLine) {
     const { lines, selectedLineIdx } = gMeme
     if (!lines.length) {
-        _createFirstLine()
+        _createLine()
         gMeme.selectedLineIdx = 0
         return
     } else if (lines.length === 1) {
-        var newLine = structuredClone(lines[0])
+        var newLine = randomLine || structuredClone(lines[0])
         newLine.pos.y = 500
     } else if (lines.length >= 2) {
         if (selectedLineIdx === -1) var newLine = structuredClone(lines[lines.length - 1])
         else var newLine = structuredClone(lines[selectedLineIdx])
         newLine.pos.y = 100 + (lines.length - 1) * 40
     }
-    newLine.txt = 'Add Text Here'
+    if (!randomLine) newLine.txt = 'Add Text Here'
     lines.push(newLine)
     gMeme.selectedLineIdx = lines.length - 1
 }
@@ -153,8 +153,8 @@ function getImgs() {
     return gImgs
 }
 
-function _createFirstLine(txt, color, outline, font) {
-    const firstLine = {
+function _createLine(txt, color, outline, font, randomLine = false) {
+    const line = {
         pos: { x: 40, y: 100 },
         markPos: {},
         txt: txt || 'Add Text Here',
@@ -164,7 +164,8 @@ function _createFirstLine(txt, color, outline, font) {
         font: font || 'Impact',
         lineWidth: 1.5,
     }
-    gMeme.lines.push(firstLine)
+    if (randomLine) return line
+    gMeme.lines.push(line)
 }
 
 function _createImgs() {

@@ -53,8 +53,8 @@ function onSwitchLine() {
     renderMeme()
 }
 
-function onAddLine() {
-    addLine()
+function onAddLine(line = null) {
+    addLine(line)
     renderEditorInputs()
     renderMeme()
 }
