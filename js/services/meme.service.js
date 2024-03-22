@@ -6,7 +6,8 @@ var gMeme
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI','monospace','cursive']
 
-function setImg(id) {
+
+function setImg(id,txt, color, outline, font) {
     const img = getImgById(id)
     gMeme = {
         selectedImgId: img.id,
@@ -14,7 +15,7 @@ function setImg(id) {
         selectedLineIdx: 0,
         lines: []
     }
-    _createFirstLine()
+    _createFirstLine(txt, color, outline, font)
 }
 
 function addLine() {
@@ -152,16 +153,16 @@ function getImgs() {
     return gImgs
 }
 
-function _createFirstLine() {
+function _createFirstLine(txt, color, outline, font) {
     const firstLine = {
-        pos: { x: 100, y: 100 },
+        pos: { x: 40, y: 100 },
         markPos: {},
-        txt: 'Add Text Here',
+        txt: txt || 'Add Text Here',
         size: 45,
-        color: 'white',
-        outline: 'black',
-        font: 'Impact',
-        lineWidth: 1,
+        color: color || 'white',
+        outline: outline || 'black',
+        font: font || 'Impact',
+        lineWidth: 1.5,
     }
     gMeme.lines.push(firstLine)
 }

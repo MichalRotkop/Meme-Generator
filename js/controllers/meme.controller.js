@@ -11,6 +11,7 @@ function onChooseImg() {
     setEventListeners()
     renderMeme()
     renderFonts()
+    renderEditorInputs()
     switchToEditor()
 }
 
@@ -20,12 +21,6 @@ function renderMeme() {
 
     setTimeout(() => markSelectedTxt(), 10)
 }
-
-// function drawNum3() {
-//     var randomIdx = getRandomInt(0, gNums.length)
-//     var res = gNums.splice(randomIdx, 1)
-//     return res[0]
-// }
 
 function setEventListeners() {
     gElCanvas.addEventListener('click', onMemeClick)
