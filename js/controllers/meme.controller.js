@@ -13,6 +13,7 @@ function onChooseImg() {
     renderFonts()
     renderEditorInputs()
     switchToEditor()
+    resizeCanvas()
 }
 
 function renderMeme() {
@@ -29,8 +30,12 @@ function setEventListeners() {
 }
 
 function resizeCanvas() {
+    if (window.innerWidth >= 650) return
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth
+    console.log('gElCanvas.width:', gElCanvas.width)
+    setCanvasSize(gElCanvas.width <= 450)
+
     renderMeme()
 }
 
@@ -107,7 +112,7 @@ function renderEditorInputs() {
 
 function onMemeClick(ev) {
     const { offsetX, offsetY } = ev
-    // console.log('offsetX, offsetY:', offsetX, offsetY)
+    console.log('offsetX, offsetY:', offsetX, offsetY)
 
     setSelectedLineIdx(offsetX, offsetY)
 
@@ -216,10 +221,6 @@ function setTxtMarkPos(txt, size, pos, idx) {
     saveTxtMarkPos(x, y, width, height, idx)
 }
 
-function onSaveMeme() {
-    
-}
-
 function onDownloadMeme() {
     unMarkLine()
     renderMeme()
@@ -235,12 +236,6 @@ function onDownloadMeme() {
         newLink.click()
     }, 100);
 }
-
-// function coverCanvasWithImg(elImg) {
-//     gCanvasWidth = gElCanvas.width
-//     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gCanvasWidth
-//     gCtx.drawImage(elImg, 0, 0, gCanvasWidth, gElCanvas.height)
-// }
 
 function coverCanvasWithImg(elImg) {
     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width

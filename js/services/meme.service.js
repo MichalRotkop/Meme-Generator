@@ -4,15 +4,27 @@ var gImgs = _createImgs()
 var gMeme
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI','monospace','cursive']
+const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI', 'monospace', 'cursive']
 
+const STORAGE_KEY = 'memeDB'
+var gSavedMemes = []
 
-function setImg(id,txt, color, outline, font) {
+function setCanvasSize(isSmall) {
+    gMeme.isCanvasSmall = isSmall
+    const { lines } = gMeme
+
+    if (lines.length < 2) return
+    lines[1].pos.y = 300
+    console.log('lines[1].pos:',lines[1].pos)
+}
+
+function setImg(id, txt, color, outline, font) {
     const img = getImgById(id)
     gMeme = {
         selectedImgId: img.id,
         selectedImgUrl: img.url,
         selectedLineIdx: 0,
+        isCanvasSmall: false,
         lines: []
     }
     _createLine(txt, color, outline, font)
@@ -26,11 +38,12 @@ function addLine(randomLine) {
         return
     } else if (lines.length === 1) {
         var newLine = randomLine || structuredClone(lines[0])
-        newLine.pos.y = 500
+        // newLine.pos.y = 400
+        newLine.pos.y = gMeme.isCanvasSmall ? 300 : 450
     } else if (lines.length >= 2) {
         if (selectedLineIdx === -1) var newLine = structuredClone(lines[lines.length - 1])
         else var newLine = structuredClone(lines[selectedLineIdx])
-        newLine.pos.y = 100 + (lines.length - 1) * 40
+        newLine.pos.y = 80 + (lines.length - 1) * 40
     }
     if (!randomLine) newLine.txt = 'Add Text Here'
     lines.push(newLine)
@@ -89,7 +102,7 @@ function setFillColor(val) {
     lines[selectedLineIdx].color = val
 }
 
-function updateLineXPos(x){
+function updateLineXPos(x) {
     const { selectedLineIdx, lines } = gMeme
     lines[selectedLineIdx].pos.x = x
 }
@@ -155,7 +168,7 @@ function getImgs() {
 
 function _createLine(txt, color, outline, font, randomLine = false) {
     const line = {
-        pos: { x: 40, y: 100 },
+        pos: { x: 40, y: 80 },
         markPos: {},
         txt: txt || 'Add Text Here',
         size: 45,
@@ -190,3 +203,18 @@ function _createImgs() {
         { id: 18, url: 'img/18.jpg', keywords: ['funny', 'mock'] },
     ]
 }
+
+function addSavedMeme() {
+    console.log('gSavedMemes:', gSavedMemes)
+    gSavedMemes.push(gMeme)
+    console.log('gSavedMemes:', gSavedMemes)
+}
+
+function getSavedMemes() {
+    return gSavedMemes
+}
+
+function _saveMemes() {
+    saveToStorage(STORAGE_KEY, gSavedMemes)
+}
+

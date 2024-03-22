@@ -19,7 +19,7 @@
                 <ul class="main-nav-list">
                     <li><button class="nav-btn" onclick="switchToGallery()">Gallery</button></li>
                     <li><button class="nav-btn" onclick="onRandomizeMeme()">Randomize</button></li>
-                    <li><button class="nav-btn">Saved</button></li>
+                    <li><button class="nav-btn" onclick="switchToSaved()">Saved</button></li>
                 </ul>
             </nav>
             <button class="hamburger-btn" type="button" onclick="toggleMenu()">☰</button>
@@ -38,9 +38,9 @@
 
     <section class="editor-page hidden">
         <main class="editor-container">
-            <div class="canvas-container">
-                <canvas width="600" height="600"></canvas>
-            </div>
+            <section class="canvas-container">
+                <canvas width="600"></canvas>
+            </section>
             <section class="editor-tools">
                 <input class="txt-input" type="text" value="Add Text Here" oninput="onSetLineTxt(this.value)">
                 <div class="input-editor">
@@ -86,6 +86,10 @@
                 </div>
             </section>
         </main>
+    </section>
+
+    <section class="saved-page hidden">
+        <div class="saved-container"></div>
     </section>
     <!-- <footer></footer> -->
 

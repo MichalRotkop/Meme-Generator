@@ -10,6 +10,9 @@ function switchToEditor() {
     
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.remove('hidden')
+
+    const elSaved = document.querySelector('.saved-page')
+    elSaved.classList.add('hidden')
 }
 
 function switchToGallery() {
@@ -18,6 +21,20 @@ function switchToGallery() {
     
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.add('hidden')
+
+    const elSaved = document.querySelector('.saved-page')
+    elSaved.classList.add('hidden')
+}
+
+function switchToSaved() {
+    const elGallery = document.querySelector('.gallery-page')
+    elGallery.classList.add('hidden')
+
+    const elEditor = document.querySelector('.editor-page')
+    elEditor.classList.add('hidden')
+
+    const elSaved = document.querySelector('.saved-page')
+    elSaved.classList.remove('hidden')
 }
 
 // function switchPages(elBtn) {

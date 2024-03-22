@@ -4,9 +4,12 @@
 
 .editor-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin: 0 auto;
+    max-width: min-content;
 }
 
 .editor-tools {
@@ -14,13 +17,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 
-    /* max-height: 380x; */
     background-color: var(--clr-base);
     padding: 10px 3px;
-    width: max-content;
-
+    /* width: max-content; */
 }
 
 .font-editor {
@@ -30,17 +32,12 @@
     gap: 0.4em;
 
     background-color: var(--clr-3);
-    /* width: 100%; */
     padding: 1em 0.7em;
     border-radius: 10px;
 }
 
 .canvas-container {
-    max-width: 600px;
-    /* min-width: 200px; */
-}
-
-canvas {
+    /* max-width: 600px; */
     width: 100%;
 }
 
@@ -93,28 +90,32 @@ canvas,
 }
 
 /*  */
-.font-btn, .font-btn input{
+.font-btn,
+.font-btn input {
     cursor: pointer;
 }
 
 .big-font::after {
     content: '+';
     font-size: 1.8em;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .small-font::after {
     content: '-';
     font-size: 1.8em;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 
-.font-btn.fill-clr, .font-btn.stroke-clr {
+.font-btn.fill-clr,
+.font-btn.stroke-clr {
     position: relative;
-    
+
 }
-.stroke-clr-input, .fill-clr-input {
+
+.stroke-clr-input,
+.fill-clr-input {
     position: absolute;
     opacity: 0;
     bottom: -3px;
@@ -124,6 +125,7 @@ canvas,
 .fa-solid {
     font-size: 2em;
 }
+
 /*  */
 
 .input-btn.switch-line {

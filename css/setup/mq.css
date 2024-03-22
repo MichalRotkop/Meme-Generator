@@ -1,5 +1,5 @@
 /* MOBILE ONLY */
-@media (max-width: 740px) {
+@media (max-width: 720px) {
 
     /* MAIN HEADER */
     .main-nav {
@@ -61,23 +61,34 @@
     }
 
     /* EDITOR */
-    .editor-container {
-        flex-direction: column;
+    .editor-container {}
+
+    .canvas-container {
+        /* width: 100%; */
     }
 }
 
 /* MEDIUM */
-@media (min-width: 740px) {
+@media (min-width: 720px) {
 
     .main-header .hamburger-btn {
         display: none;
     }
 
-    /* 
-    body, .main-header {
+
+    body,
+    .main-header {
         grid-template-columns: 100px minmax(260px, 1fr) 100px;
 
-    } */
+        /*  */
+        grid-template-columns: minmax(20px, 1fr) minmax(700px, 1100px) minmax(20px, 1fr);
+
+
+    }
+
+    .main-header {
+        margin-bottom: 50px;
+    }
 
     .img-gallery-container {
         display: grid;
@@ -87,6 +98,7 @@
     }
 
     .editor-container {
+        /* flex-direction: row; */
         gap: 40px;
     }
 
@@ -109,23 +121,40 @@
     }
 }
 
-/* LARGE */
+/* MEDIUM ++ */
+@media (min-width: 1100px) {
 
-@media (min-width: 1200px) {
+    .editor-container {
+        flex-direction: row;
+        /* gap: 40px; */
+    }
 
-    body,
-    .main-header {
-        /* grid-template-columns: 20px minmax(260px, 1fr) 20px; */
-        grid-template-columns: minmax(200px, 1fr) minmax(auto, 1600px) minmax(200px, 1fr);
+    .editor-tools {
+        padding: 50px;
     }
 
     .main-header {
         margin-bottom: 100px;
     }
+}
 
-    .editor-tools {
-        padding: 30px;
+/* LARGE */
+
+/* @media (min-width: 1200px) { */
+@media (min-width: 1400px) {
+
+    body,
+    .main-header {
+        /* grid-template-columns: 20px minmax(260px, 1fr) 20px; */
+        /* grid-template-columns: minmax(200px, 1fr) minmax(auto, 1600px) minmax(200px, 1fr); */
+        grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
+
+        /*  */
+
+        grid-template-columns: minmax(60px, 1fr) minmax(auto, 1200px) minmax(60px, 1fr);
+
     }
+
 }
 
 /* DESKTOP */
@@ -133,14 +162,15 @@
 
     body,
     .main-header {
-        grid-template-columns: minmax(500px, 1fr) minmax(auto, 1600px) minmax(500px, 1fr);
+        /* grid-template-columns: minmax(400px, 1fr) minmax(auto, 1600px) minmax(400px, 1fr); */
+        /* grid-template-columns: 1fr minmax(auto, 1300px) 1fr; */
     }
 
-    .main-header {
+    /* .main-header {
         margin-bottom: 100px;
-    }
+    } */
 
-    .editor-tools {
+    /* .editor-tools {
         padding: 50px;
-    }
+    } */
 }
