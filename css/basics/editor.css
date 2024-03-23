@@ -22,7 +22,6 @@
 
     background-color: var(--clr-base);
     padding: 10px 3px;
-    /* width: max-content; */
 }
 
 .font-editor {
@@ -37,7 +36,6 @@
 }
 
 .canvas-container {
-    /* max-width: 600px; */
     width: 100%;
 }
 
@@ -49,10 +47,8 @@ canvas,
 }
 
 /* INPUT */
-
 .txt-input {
     height: var(--editor-btn-size-m);
-    /* width: 80%; */
     background-color: var(--clr--3);
     padding-inline-start: 50px;
     padding-inline: 50px;
@@ -89,7 +85,6 @@ canvas,
     border-radius: 10px;
 }
 
-/*  */
 .font-btn,
 .font-btn input {
     cursor: pointer;
@@ -106,7 +101,6 @@ canvas,
     font-size: 1.8em;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
 
 .font-btn.fill-clr,
 .font-btn.stroke-clr {
@@ -125,8 +119,6 @@ canvas,
 .fa-solid {
     font-size: 2em;
 }
-
-/*  */
 
 .input-btn.switch-line {
     background-image: linear-gradient(-38deg, #66c4dc 0%, #0c98bb 100%);

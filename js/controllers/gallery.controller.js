@@ -49,35 +49,20 @@ function setRandomLineProp() {
     }
 }
 
-// function onUploadImg(ev) {
-//     loadImageFromInput(ev)
-//     // onImgSelect()
-// }
-
-// function loadImageFromInput(ev) {
-//     const reader = new FileReader()
-
-//     reader.onload = ev => {
-//         let img = new Image() 
-//         img.src = ev.target.result 
-//         img.onload = () => coverCanvasWithImg(img)
-//     }
-//     reader.readAsDataURL(ev.target.files[0]) 
-// }
-
 function onUploadImg(ev) {
-    loadImageFromInput(ev, coverCanvasWithImg)
-    // onImgSelect()
+    loadImageFromInput(ev, addImg)
+    setTimeout(() => renderGallery(), 200)
 }
 
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
-    
+
     reader.onload = ev => {
-        let img = new Image() 
-        img.src = ev.target.result 
+        let img = new Image()
+        img.src = ev.target.result
         img.onload = () => onImageReady(img)
     }
-    reader.readAsDataURL(ev.target.files[0]) 
+    reader.readAsDataURL(ev.target.files[0])
 }
+
 

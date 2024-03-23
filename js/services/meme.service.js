@@ -4,9 +4,10 @@ var gImgs = _createImgs()
 var gMeme
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI', 'monospace', 'cursive']
 
-const STORAGE_KEY = 'memeDB'
+const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI', 'monospace', 'cursive']
+const MEMES_KEY = 'memeDB'
+const IMGS_KEY = 'imgDB'
 
 function setMeme(id, txt, color, outline, font, size) {
     const img = getImgById(id)
@@ -16,9 +17,8 @@ function setMeme(id, txt, color, outline, font, size) {
         selectedLineIdx: 0,
         isCanvasSmall: false,
         dataUrl: '',
-        lines:[]
+        lines: []
     }
-
     const line = _createLine(txt, color, outline, font, size)
     gMeme.lines.push(line)
 }
@@ -124,23 +124,9 @@ function getFonts() {
     return FONTS
 }
 
-// function getSelectedLineFontSize() {
-//     const { lines, selectedLineIdx } = gMeme
-//     return lines[selectedLineIdx].size
-// }
-
-// function getSelectedLinePos() {
-//     const { lines, selectedLineIdx } = gMeme
-//     return lines[selectedLineIdx].pos
-// }
-
 function getMarkPos() {
     const { lines, selectedLineIdx } = gMeme
     return (selectedLineIdx === -1) ? null : lines[selectedLineIdx].markPos
-}
-
-function resetSelectedLine() {
-    // for when done with line - reset color? 
 }
 
 function unMarkLine() {
@@ -156,6 +142,10 @@ function getImgById(id) {
 }
 
 function getImgs() {
+    const imgs = loadFromStorage(IMGS_KEY)
+    if (imgs) return imgs
+
+    _saveImgs(gImgs)
     return gImgs
 }
 
@@ -167,7 +157,6 @@ function setCanvasSize(isSmall) {
     lines[1].pos.y = 300
 }
 
-// function _createLine(txt, color, outline, font,size, randomLine = false) {
 function _createLine(txt, color, outline, font, size) {
     const line = {
         pos: { x: 40, y: 80 },
@@ -179,8 +168,6 @@ function _createLine(txt, color, outline, font, size) {
         font: font || 'Impact',
         lineWidth: 1.5,
     }
-    // if (randomLine) return line
-    // gMeme.lines.push(line)
     return line
 }
 
@@ -204,23 +191,29 @@ function _createImgs() {
         { id: 16, url: 'img/16.jpg', keywords: ['funny', 'surprised', 'happy', 'success'] },
         { id: 17, url: 'img/17.jpg', keywords: ['mock', 'success'] },
         { id: 18, url: 'img/18.jpg', keywords: ['funny', 'mock'] },
+        { id: 19, url: 'img/19.jpg', keywords: [] },
+        { id: 20, url: 'img/20.jpg', keywords: [] },
+        { id: 21, url: 'img/21.jpg', keywords: [] },
+        { id: 22, url: 'img/22.jpg', keywords: [] },
+        { id: 23, url: 'img/23.jpg', keywords: [] },
+        { id: 24, url: 'img/24.jpg', keywords: [] },
+        { id: 25, url: 'img/25.jpg', keywords: [] }
     ]
 }
 
-function _createImg(url) {
+function _createImg(img) {
     return {
         id: makeId(3),
-        url,
-        keywords: ['funny,mock']
+        url: img.src,
+        keywords: []
     }
 }
 
-function addImg(url) {
-    const img = _createImg(url)
-    
-    gImgs.unshift(img)
-    console.log(gImgs[0]);
+function addImg(img) {
+    const newImg = _createImg(img)
 
+    gImgs.unshift(newImg)
+    _saveImgs(gImgs)
 }
 
 // Saved Memes
@@ -242,11 +235,11 @@ function saveMeme() {
 
 function loadMeme(meme) {
     gMeme = meme
-    console.log('gMeme:',gMeme)
+    console.log('gMeme:', gMeme)
 }
 
 function getSavedMemes() {
-    var memes = loadFromStorage(STORAGE_KEY)
+    var memes = loadFromStorage(MEMES_KEY)
 
     if (!memes || !memes.length) memes = _createDemoSavedMemes()
     _saveMemes(memes)
@@ -281,7 +274,11 @@ function _createDemoSavedMeme(id, txt, color, outline, font, size) {
 }
 
 function _saveMemes(memes) {
-    saveToStorage(STORAGE_KEY, memes)
+    saveToStorage(MEMES_KEY, memes)
+}
+
+function _saveImgs(imgs) {
+    saveToStorage(IMGS_KEY, imgs)
 }
 
 
