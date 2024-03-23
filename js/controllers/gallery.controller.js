@@ -35,6 +35,10 @@ function onRandomizeMeme() {
         const newLine = _createLine(txt, color, outline, font, true)
         onAddLine(newLine)
     }
+
+    removeActive()
+    const elBtn = document.querySelector('.rand-btn')
+    elBtn.classList.add('active')
 }
 
 function setRandomLineProp() {

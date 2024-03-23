@@ -5,6 +5,7 @@ function toggleMenu() {
 }
 
 function switchToEditor() {
+    removeActive()
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')
     
@@ -16,8 +17,12 @@ function switchToEditor() {
 }
 
 function switchToGallery() {
+    removeActive()
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.remove('hidden')
+
+    const elBtn = document.querySelector('.gallery-btn')
+    elBtn.classList.add('active')
     
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.add('hidden')
@@ -27,6 +32,7 @@ function switchToGallery() {
 }
 
 function switchToSaved() {
+    removeActive()
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')
 
@@ -35,4 +41,12 @@ function switchToSaved() {
 
     const elSaved = document.querySelector('.saved-page')
     elSaved.classList.remove('hidden')
+
+    const elBtn = document.querySelector('.saved-btn')
+    elBtn.classList.add('active')
+}
+
+function removeActive() {
+    const elNavBtns = document.querySelectorAll('.nav-btn')
+    elNavBtns.forEach(elBtn => elBtn.classList.remove('active'))
 }
