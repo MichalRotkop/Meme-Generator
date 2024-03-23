@@ -32,7 +32,6 @@ function addLine(randomLine) {
         return
     } else if (lines.length === 1) {
         var newLine = randomLine || structuredClone(lines[0])
-        // newLine.pos.y = 400
         newLine.pos.y = gMeme.isCanvasSmall ? 300 : 450
     } else if (lines.length >= 2) {
         if (selectedLineIdx === -1) var newLine = structuredClone(lines[lines.length - 1])
@@ -206,6 +205,22 @@ function _createImgs() {
         { id: 17, url: 'img/17.jpg', keywords: ['mock', 'success'] },
         { id: 18, url: 'img/18.jpg', keywords: ['funny', 'mock'] },
     ]
+}
+
+function _createImg(url) {
+    return {
+        id: makeId(3),
+        url,
+        keywords: ['funny,mock']
+    }
+}
+
+function addImg(url) {
+    const img = _createImg(url)
+    
+    gImgs.unshift(img)
+    console.log(gImgs[0]);
+
 }
 
 // Saved Memes

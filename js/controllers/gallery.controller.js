@@ -6,10 +6,14 @@ function onInit() {
 
 function renderGallery() {
     const imgs = getImgs()
+    const strLabel = `<label class="upload-label" for="upload-file">Upload Image</label>
+    <input class="upload-btn" type="file" id="upload-file" name="img" 
+    onchange="onUploadImg(event)">`
+
     const strHtmls = imgs.map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})">`)
 
     const elGalleryContainer = document.querySelector('.img-gallery-container')
-    elGalleryContainer.innerHTML = strHtmls.join('')
+    elGalleryContainer.innerHTML = strLabel + strHtmls.join('')
 }
 
 function onImgSelect(id, txt, color, outline, font, size) {
@@ -44,3 +48,36 @@ function setRandomLineProp() {
         font: fonts[randomFontIdx]
     }
 }
+
+// function onUploadImg(ev) {
+//     loadImageFromInput(ev)
+//     // onImgSelect()
+// }
+
+// function loadImageFromInput(ev) {
+//     const reader = new FileReader()
+
+//     reader.onload = ev => {
+//         let img = new Image() 
+//         img.src = ev.target.result 
+//         img.onload = () => coverCanvasWithImg(img)
+//     }
+//     reader.readAsDataURL(ev.target.files[0]) 
+// }
+
+function onUploadImg(ev) {
+    loadImageFromInput(ev, coverCanvasWithImg)
+    // onImgSelect()
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+    
+    reader.onload = ev => {
+        let img = new Image() 
+        img.src = ev.target.result 
+        img.onload = () => onImageReady(img)
+    }
+    reader.readAsDataURL(ev.target.files[0]) 
+}
+

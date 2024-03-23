@@ -102,6 +102,10 @@
     .saved-container button {
         font-size: 0.9em;
     }
+
+    .upload-label {
+        font-size: 1.5em;
+    }
 }
 
 /* LARGE */
