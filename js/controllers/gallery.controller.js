@@ -12,8 +12,8 @@ function renderGallery() {
     elGalleryContainer.innerHTML = strHtmls.join('')
 }
 
-function onImgSelect(id, txt, color, outline, font) {
-    setImg(id, txt, color, outline, font)
+function onImgSelect(id, txt, color, outline, font, size) {
+    setMeme(id, txt, color, outline, font, size)
     onChooseImg()
 }
 
@@ -22,12 +22,12 @@ function onRandomizeMeme() {
     const randomImgIdx = getRandomInt(0, imgs.length)
     const id = imgs[randomImgIdx].id
 
-    const {txt, color, outline, font } = setRandomLineProp()
-    
+    const { txt, color, outline, font } = setRandomLineProp()
+
     onImgSelect(id, txt, color, outline, font)
 
-    if (Math.random() > 0.6 ) {
-        const {txt, color, outline, font } = setRandomLineProp()
+    if (Math.random() > 0.6) {
+        const { txt, color, outline, font } = setRandomLineProp()
         const newLine = _createLine(txt, color, outline, font, true)
         onAddLine(newLine)
     }

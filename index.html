@@ -19,13 +19,13 @@
                 <ul class="main-nav-list">
                     <li><button class="nav-btn" onclick="switchToGallery()">Gallery</button></li>
                     <li><button class="nav-btn" onclick="onRandomizeMeme()">Randomize</button></li>
-                    <li><button class="nav-btn" onclick="switchToSaved()">Saved</button></li>
+                    <li><button class="nav-btn" onclick="onOpenSaved()">Saved</button></li>
                 </ul>
             </nav>
             <button class="hamburger-btn" type="button" onclick="toggleMenu()">☰</button>
         </div>
     </header>
-
+    
     <section class="gallery-page">
         <main>
             <section class="filter-bar">
@@ -89,14 +89,16 @@
     </section>
 
     <section class="saved-page hidden">
-        <div class="saved-container"></div>
+        <section class="saved-container"></section>
     </section>
     <!-- <footer></footer> -->
 
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/util.service.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controllers/saved.controller.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>
     <script src="js/controllers/meme.controller.js"></script>
 </body>

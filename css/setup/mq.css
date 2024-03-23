@@ -18,7 +18,6 @@
 
     .main-nav-list {
         flex-direction: column;
-        /* align-items: center; */
     }
 
     .main-nav-list li {
@@ -59,13 +58,6 @@
         opacity: 0;
         pointer-events: none;
     }
-
-    /* EDITOR */
-    .editor-container {}
-
-    .canvas-container {
-        /* width: 100%; */
-    }
 }
 
 /* MEDIUM */
@@ -75,35 +67,26 @@
         display: none;
     }
 
-
     body,
     .main-header {
-        grid-template-columns: 100px minmax(260px, 1fr) 100px;
-
-        /*  */
-        grid-template-columns: minmax(20px, 1fr) minmax(700px, 1100px) minmax(20px, 1fr);
-
-
+        grid-template-columns: minmax(60px, 1fr) minmax(600px, 1100px) minmax(60px, 1fr);
     }
 
     .main-header {
         margin-bottom: 50px;
     }
 
-    .img-gallery-container {
-        display: grid;
+    .img-gallery-container, .saved-container{
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 10px;
-        grid-auto-flow: dense;
     }
 
     .editor-container {
-        /* flex-direction: row; */
         gap: 40px;
     }
 
     .editor-tools {
         gap: 15px;
+        padding: 10px;
     }
 
     .editor-links ul {
@@ -115,22 +98,22 @@
         gap: 1em;
         padding: 1em;
     }
-
-    .editor-tools {
-        padding: 10px;
-    }
 }
 
-/* MEDIUM ++ */
+/* LARGE */
 @media (min-width: 1100px) {
+
+    body,
+    .main-header {
+        grid-template-columns: minmax(80px, 1fr) minmax(600px, 1100px) minmax(80px, 1fr);
+    }
 
     .editor-container {
         flex-direction: row;
-        /* gap: 40px; */
     }
 
     .editor-tools {
-        padding: 50px;
+        padding: 20px;
     }
 
     .main-header {
@@ -138,39 +121,16 @@
     }
 }
 
-/* LARGE */
+/* DESKTOP */
 
-/* @media (min-width: 1200px) { */
 @media (min-width: 1400px) {
 
     body,
     .main-header {
-        /* grid-template-columns: 20px minmax(260px, 1fr) 20px; */
-        /* grid-template-columns: minmax(200px, 1fr) minmax(auto, 1600px) minmax(200px, 1fr); */
-        grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
-
-        /*  */
-
         grid-template-columns: minmax(60px, 1fr) minmax(auto, 1200px) minmax(60px, 1fr);
-
     }
 
-}
-
-/* DESKTOP */
-@media (min-width: 1900px) {
-
-    body,
-    .main-header {
-        /* grid-template-columns: minmax(400px, 1fr) minmax(auto, 1600px) minmax(400px, 1fr); */
-        /* grid-template-columns: 1fr minmax(auto, 1300px) 1fr; */
-    }
-
-    /* .main-header {
-        margin-bottom: 100px;
-    } */
-
-    /* .editor-tools {
+    .editor-tools {
         padding: 50px;
-    } */
+    }
 }

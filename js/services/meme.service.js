@@ -7,33 +7,26 @@ var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI', 'monospace', 'cursive']
 
 const STORAGE_KEY = 'memeDB'
-var gSavedMemes = []
 
-function setCanvasSize(isSmall) {
-    gMeme.isCanvasSmall = isSmall
-    const { lines } = gMeme
-
-    if (lines.length < 2) return
-    lines[1].pos.y = 300
-    console.log('lines[1].pos:',lines[1].pos)
-}
-
-function setImg(id, txt, color, outline, font) {
+function setMeme(id, txt, color, outline, font, size) {
     const img = getImgById(id)
     gMeme = {
         selectedImgId: img.id,
         selectedImgUrl: img.url,
         selectedLineIdx: 0,
         isCanvasSmall: false,
+        dataUrl: '',
         lines: []
     }
-    _createLine(txt, color, outline, font)
+    const line = _createLine(txt, color, outline, font,size)
+    gMeme.lines.push(line)
 }
 
 function addLine(randomLine) {
     const { lines, selectedLineIdx } = gMeme
     if (!lines.length) {
-        _createLine()
+        const line = _createLine()
+        gMeme.lines.push(line)
         gMeme.selectedLineIdx = 0
         return
     } else if (lines.length === 1) {
@@ -166,19 +159,29 @@ function getImgs() {
     return gImgs
 }
 
-function _createLine(txt, color, outline, font, randomLine = false) {
+function setCanvasSize(isSmall) {
+    gMeme.isCanvasSmall = isSmall
+    const { lines } = gMeme
+
+    if (lines.length < 2) return
+    lines[1].pos.y = 300
+}
+
+// function _createLine(txt, color, outline, font,size, randomLine = false) {
+function _createLine(txt, color, outline, font,size) {
     const line = {
         pos: { x: 40, y: 80 },
         markPos: {},
         txt: txt || 'Add Text Here',
-        size: 45,
+        size: size || 45,
         color: color || 'white',
         outline: outline || 'black',
         font: font || 'Impact',
         lineWidth: 1.5,
     }
-    if (randomLine) return line
-    gMeme.lines.push(line)
+    // if (randomLine) return line
+    // gMeme.lines.push(line)
+    return line
 }
 
 function _createImgs() {
@@ -204,17 +207,62 @@ function _createImgs() {
     ]
 }
 
-function addSavedMeme() {
-    console.log('gSavedMemes:', gSavedMemes)
-    gSavedMemes.push(gMeme)
-    console.log('gSavedMemes:', gSavedMemes)
+// Saved Memes
+function deleteSavedMeme(idx) {
+    const memes = getSavedMemes()
+    memes.splice(idx, 1)
+    _saveMemes(memes)
+}
+
+function updateDataUrl(dataUrl) {
+    gMeme.dataUrl = dataUrl
+    console.log('gMeme.dataUrl:',gMeme.dataUrl)
+}
+
+function saveMeme() {
+    const memes = getSavedMemes()
+    memes.push(gMeme)
+    _saveMemes(memes)
 }
 
 function getSavedMemes() {
-    return gSavedMemes
+    var memes = _loadSavedMemes()
+    if (!memes || !memes.length) memes = _createDemoSavedMemes()
+    return memes
 }
 
-function _saveMemes() {
-    saveToStorage(STORAGE_KEY, gSavedMemes)
+function _createDemoSavedMemes() {
+    const savedMemes = [
+        _createDemoSavedMeme(8, 'more or less a pleasure', '#3b8af1', '#3edde0', 'arial', 47),
+        _createDemoSavedMeme(9, 'burn very nice', '#fdb768', '#18536d', 'impact', 47),
+        _createDemoSavedMeme(4, 'do not do not', '#2016DF', '#0AB73E', 'impact')
+    ]
+    savedMemes[0].lines.push(_createLine('from cats', '#8df13b', '#e05e3e', 'Impact', 53))
+    savedMemes[2].lines.push(_createLine('story it', '#CB35A6', '#365BBE', 'Verdana', 51))
+
+    return savedMemes
+}
+
+function _createDemoSavedMeme(id, txt, color, outline, font, size) {
+    const img = getImgById(id)
+    const savedMeme = {
+        selectedImgId: img.id,
+        selectedImgUrl: img.url,
+        selectedLineIdx: 0,
+        isCanvasSmall: false,
+        dataUrl: '',
+        lines: []
+    }
+    const line = _createLine(txt, color, outline, font, size)
+    savedMeme.lines.push(line)
+    return savedMeme
+}
+
+function _saveMemes(memes) {
+    saveToStorage(STORAGE_KEY, memes)
+}
+
+function _loadSavedMemes() {
+    loadFromStorage(STORAGE_KEY)
 }
 

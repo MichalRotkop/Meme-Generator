@@ -8,6 +8,8 @@ function onChooseImg() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
+    console.log('getMeme():',getMeme())
+
     setEventListeners()
     renderMeme()
     renderFonts()
@@ -31,9 +33,9 @@ function setEventListeners() {
 
 function resizeCanvas() {
     if (window.innerWidth >= 650) return
+
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth
-    console.log('gElCanvas.width:', gElCanvas.width)
     setCanvasSize(gElCanvas.width <= 450)
 
     renderMeme()
@@ -221,6 +223,11 @@ function setTxtMarkPos(txt, size, pos, idx) {
     saveTxtMarkPos(x, y, width, height, idx)
 }
 
+function coverCanvasWithImg(elImg) {
+    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
 function onDownloadMeme() {
     unMarkLine()
     renderMeme()
@@ -231,13 +238,51 @@ function onDownloadMeme() {
         // newLink to solve unsuccessful download with existing link
         const newLink = document.createElement('a')
         newLink.href = dataUrl
-        newLink.download = `mymeme_${selectedImgId}`
+        newLink.download = `my-meme_${selectedImgId}`
 
         newLink.click()
     }, 100);
 }
 
-function coverCanvasWithImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+function onSaveMeme() {
+    unMarkLine()
+    renderMeme()
+
+    
+    
+    
+    setTimeout(() => {
+        const dataUrl = gElCanvas.toDataURL()
+        // const newLink = document.createElement('a')
+        // newLink.href = dataUrl
+        updateDataUrl(dataUrl)
+        
+        // saveMeme()
+    }, 200);
+
+    // setTimeout(() => {
+    //     const { selectedImgId } = getMeme()
+    //     const dataUrl = gElCanvas.toDataURL()
+    //     const newLink = document.createElement('a')
+    //     newLink.href = dataUrl
+    //     newLink.download = `my-meme_${selectedImgId}`
+
+    //     newLink.click()
+    // }, 100);
+
+    // add message modal
 }
+
+function onSaveMeme() {
+    unMarkLine() // used to make changes in canvas
+    renderMeme() // render the canvas
+
+    setTimeout(() => {
+        const dataUrl = gElCanvas.toDataURL() //take canvas data
+        updateDataUrl(dataUrl) //put canvas data inside service
+        
+        saveMeme() // take the data from service and save to local storage which then uses to render the gallery
+    }, 200);
+}
+
+
