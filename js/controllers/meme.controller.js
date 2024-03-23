@@ -7,8 +7,6 @@ function initEditor() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    console.log('getMeme():', getMeme())
-
     setEventListeners()
     renderMeme()
     renderFonts()
@@ -128,7 +126,6 @@ function markSelectedTxt() {
 
     gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
-    // gCtx.strokeStyle = gIsDownloaded ? 'transparent ':'black'
     gCtx.strokeRect(x, y, width, height)
 }
 
@@ -251,8 +248,6 @@ function onSaveMeme() {
         const dataUrl = gElCanvas.toDataURL()
         updateDataUrl(dataUrl)
     }, 200);
-
-    // add message modal
 }
 
 function onShareMeme() {
@@ -262,7 +257,6 @@ function onShareMeme() {
         const url = encodeURIComponent(uploadedImgUrl)
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
     }
-
     doUploadImg(imgDataUrl, onSuccess)
 }
 

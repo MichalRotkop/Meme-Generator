@@ -11,7 +11,6 @@
 /* components */
 @import url(components/main-header.css);
 @import url(components/main-screen.css);
-/* @import url(components/main-footer.css); */
 
 /* media queries */
 @import url(setup/mq.css);

@@ -76,7 +76,8 @@
         margin-bottom: 50px;
     }
 
-    .img-gallery-container, .saved-container{
+    .img-gallery-container,
+    .saved-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
