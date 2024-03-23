@@ -4,7 +4,7 @@ let gElCanvas
 var gCanvasWidth
 let gCtx
 
-function onChooseImg() {
+function initEditor() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
@@ -247,9 +247,6 @@ function onDownloadMeme() {
 function onSaveMeme() {
     unMarkLine()
     renderMeme()
-
-    
-    
     
     setTimeout(() => {
         const dataUrl = gElCanvas.toDataURL()
@@ -273,16 +270,5 @@ function onSaveMeme() {
     // add message modal
 }
 
-function onSaveMeme() {
-    unMarkLine() // used to make changes in canvas
-    renderMeme() // render the canvas
-
-    setTimeout(() => {
-        const dataUrl = gElCanvas.toDataURL() //take canvas data
-        updateDataUrl(dataUrl) //put canvas data inside service
-        
-        saveMeme() // take the data from service and save to local storage which then uses to render the gallery
-    }, 200);
-}
 
 

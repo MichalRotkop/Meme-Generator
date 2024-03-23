@@ -98,6 +98,10 @@
         gap: 1em;
         padding: 1em;
     }
+
+    .saved-container button {
+        font-size: 0.9em;
+    }
 }
 
 /* LARGE */
@@ -118,6 +122,10 @@
 
     .main-header {
         margin-bottom: 100px;
+    }
+
+    .saved-container button {
+        font-size: 1em;
     }
 }
 

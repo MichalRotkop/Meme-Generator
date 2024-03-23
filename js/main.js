@@ -36,13 +36,3 @@ function switchToSaved() {
     const elSaved = document.querySelector('.saved-page')
     elSaved.classList.remove('hidden')
 }
-
-// function switchPages(elBtn) {
-//     const elEditor = document.querySelector('.editor-page')
-//     if (elBtn && elEditor.classList.contains('hidden')) return
-    
-//     const elGallery = document.querySelector('.gallery-page')
-//     elGallery.classList.toggle('hidden')
-
-//     elEditor.classList.toggle('hidden')
-// }

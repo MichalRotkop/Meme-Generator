@@ -16,8 +16,9 @@ function setMeme(id, txt, color, outline, font, size) {
         selectedLineIdx: 0,
         isCanvasSmall: false,
         dataUrl: '',
-        lines: []
+        lines:[]
     }
+
     const line = _createLine(txt, color, outline, font, size)
     gMeme.lines.push(line)
 }
@@ -216,7 +217,6 @@ function deleteSavedMeme(idx) {
 
 function updateDataUrl(dataUrl) {
     gMeme.dataUrl = dataUrl
-    console.log('gMeme.dataUrl:', gMeme.dataUrl)
 }
 
 function saveMeme() {
@@ -225,12 +225,16 @@ function saveMeme() {
     _saveMemes(memes)
 }
 
+function loadMeme(meme) {
+    gMeme = meme
+    console.log('gMeme:',gMeme)
+}
+
 function getSavedMemes() {
     var memes = loadFromStorage(STORAGE_KEY)
 
     if (!memes || !memes.length) memes = _createDemoSavedMemes()
     _saveMemes(memes)
-    console.log('memes after save in get:', memes)
     return memes
 }
 

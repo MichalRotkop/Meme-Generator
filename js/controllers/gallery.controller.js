@@ -14,7 +14,7 @@ function renderGallery() {
 
 function onImgSelect(id, txt, color, outline, font, size) {
     setMeme(id, txt, color, outline, font, size)
-    onChooseImg()
+    initEditor()
 }
 
 function onRandomizeMeme() {
