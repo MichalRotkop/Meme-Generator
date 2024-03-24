@@ -31,9 +31,8 @@
 .nav-btn {
     border: none;
     background-color: transparent;
-    height: 70px;
-
-    width: 140px;
+    height: 100px;
+    width: 200px;
     border-bottom: 5px solid transparent;
     font-size: 1.3em;
     color: var(--clr--4);

@@ -9,6 +9,14 @@
     gap: 10px;
     grid-auto-flow: dense;
     border-radius: 5%;
+
+    height: 80vh;
+    
+    overflow-y: scroll;
+    padding-inline: 7px;
+    scrollbar-color: var(--clr-3) black;
+    scrollbar-width: 0.7em; 
+
 }
 
 .img-gallery-container img {
@@ -43,3 +51,18 @@
 .upload-btn {
     display: none;
 }
+
+/*  */
+
+.poem {
+    width: 300px;
+    height: 100px;
+    border: 1px solid;
+  }
+  
+  .poem {
+    overflow: scroll;
+    scrollbar-color: red orange;
+    scrollbar-width: thin;
+  }
+  
