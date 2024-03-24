@@ -1,8 +1,9 @@
 'use strict'
 
-var gFilterVal = ''
+var gFilterVal
 
 function onInit() {
+    gFilterVal = ''
     renderGallery()
     const elBtn = document.querySelector('.gallery-btn')
     elBtn.classList.add('active')
@@ -44,12 +45,7 @@ function loadImageFromInput(ev, onImageReady) {
 function onFilterMeme(val) {
     gFilterVal = val
     renderGallery()
-    // filterMeme(val)
-
 }
 
-// function onFilterMeme(val) {
-//     filterMeme(val)
-// }
 
 

@@ -60,9 +60,8 @@
 }
 
 .filter-containter {
-
+    position: relative;
 }
-
 
 .filter-input {
     background-color: var(--clr-1);
@@ -75,11 +74,30 @@
     color: var(--clr--4);
 }
 
+.filter-input:focus {
+    outline: 1px solid var(--clr-3);
+}
+
+.filter-containter::after {
+    position: absolute;
+    font-size: 1.3em;
+    right: 15px;
+    top: 10px;
+
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f002';
+    padding-inline-end: 10px;
+    color: rgb(26 166 155);
+}
+
 .keywords-containter {
     border-radius: 20px;
     background-color: #87898d;
     height: 25px;
 }
+
+
 
 
 

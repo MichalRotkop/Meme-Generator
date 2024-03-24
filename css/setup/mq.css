@@ -93,6 +93,10 @@
         font-size: 1.4em;
     }
 
+    .filter-containter::after {
+        font-size: 2em;
+    }
+
     .keywords-containter {
         border-radius: 24px;
         height: 40px;
