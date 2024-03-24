@@ -11,14 +11,12 @@
     grid-auto-rows:max-content; */
     border-radius: 5%;
     height: 80vh;
+    padding: 10px;
     
     overflow-y: scroll;
     padding-inline: 7px;
     scrollbar-color: var(--clr-3) black;
     scrollbar-width: 0.7em;
-}
-
-.saved-container article {
 }
 
 .saved-img-container {

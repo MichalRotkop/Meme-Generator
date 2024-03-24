@@ -23,8 +23,6 @@ function setMeme(id, txt, color, outline, font, size) {
     gMeme.lines.push(line)
 }
 
-
-
 function addLine(randomLine) {
     const { lines, selectedLineIdx } = gMeme
     if (!lines.length) {
@@ -115,6 +113,14 @@ function setFillColor(val) {
     lines[selectedLineIdx].color = val
 }
 
+function setCanvasSize(isSmall) {
+    gMeme.isCanvasSmall = isSmall
+    const { lines } = gMeme
+
+    if (lines.length < 2) return
+    lines[1].pos.y = 300
+}
+
 function updateLineXPos(x) {
     const { selectedLineIdx, lines } = gMeme
     lines[selectedLineIdx].pos.x = x
@@ -161,35 +167,28 @@ function getImgById(id) {
     return gImgs.find(img => img.id === id)
 }
 
-function getImgs() {
+function getImgs(val) {
+    if (val) return filterMeme(val)
+
     const imgs = loadFromStorage(IMGS_KEY)
-    if (imgs) return imgs
+    if (imgs) gImgs = imgs
 
     _saveImgs(gImgs)
     return gImgs
 }
 
-function setCanvasSize(isSmall) {
-    gMeme.isCanvasSmall = isSmall
-    const { lines } = gMeme
-
-    if (lines.length < 2) return
-    lines[1].pos.y = 300
+function filterMeme(value) {
+    const val = value.toLowerCase()
+    return gImgs.filter(img => {
+        return img.keywords.find(keyword => keyword.includes(val))
+    })
 }
 
-function _createLine(txt, color, outline, font, size) {
-    const line = {
-        pos: { x: 40, y: 80 },
-        markPos: {},
-        isDrag: false,
-        txt: txt || 'Add Text Here',
-        size: size || 45,
-        color: color || 'white',
-        outline: outline || 'black',
-        font: font || 'Impact',
-        lineWidth: 1.5,
-    }
-    return line
+function addImg(img) {
+    const newImg = _createImg(img)
+
+    gImgs.unshift(newImg)
+    _saveImgs(gImgs)
 }
 
 function _createImgs() {
@@ -212,13 +211,13 @@ function _createImgs() {
         { id: 16, url: 'img/16.jpg', keywords: ['funny', 'surprised', 'happy', 'success'] },
         { id: 17, url: 'img/17.jpg', keywords: ['mock', 'success'] },
         { id: 18, url: 'img/18.jpg', keywords: ['funny', 'mock'] },
-        { id: 19, url: 'img/19.jpg', keywords: [] },
-        { id: 20, url: 'img/20.jpg', keywords: [] },
-        { id: 21, url: 'img/21.jpg', keywords: [] },
-        { id: 22, url: 'img/22.jpg', keywords: [] },
-        { id: 23, url: 'img/23.jpg', keywords: [] },
-        { id: 24, url: 'img/24.jpg', keywords: [] },
-        { id: 25, url: 'img/25.jpg', keywords: [] }
+        { id: 19, url: 'img/19.jpg', keywords: ['surprised', 'mock'] },
+        { id: 20, url: 'img/20.jpg', keywords: ['happy', 'surprised', 'success'] },
+        { id: 21, url: 'img/21.jpg', keywords: ['funny', 'mock'] },
+        { id: 22, url: 'img/22.jpg', keywords: ['happy', 'baby'] },
+        { id: 23, url: 'img/23.jpg', keywords: ['mock'] },
+        { id: 24, url: 'img/24.jpg', keywords: ['dogs', 'animal', 'sleep'] },
+        { id: 25, url: 'img/25.jpg', keywords: ['success', 'happy'] }
     ]
 }
 
@@ -230,14 +229,23 @@ function _createImg(img) {
     }
 }
 
-function addImg(img) {
-    const newImg = _createImg(img)
-
-    gImgs.unshift(newImg)
-    _saveImgs(gImgs)
+function _createLine(txt, color, outline, font, size) {
+    const line = {
+        pos: { x: 40, y: 80 },
+        markPos: {},
+        isDrag: false,
+        txt: txt || 'Add Text Here',
+        size: size || 45,
+        color: color || 'white',
+        outline: outline || 'black',
+        font: font || 'Impact',
+        lineWidth: 1.5,
+    }
+    return line
 }
 
-// Saved Memes
+// SAVED MEMES
+
 function deleteSavedMeme(idx) {
     const memes = getSavedMemes()
     memes.splice(idx, 1)

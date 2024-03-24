@@ -29,9 +29,21 @@
     <section class="gallery-page">
         <main>
             <section class="filter-search-section">
-                
+
                 <div class="filter-containter">
-                    <input class="filter-input" type="text" placeholder="Search" oninput="onFilterMeme(this.value)">
+                    <input class="filter-input" type="text" list="meme-key-words" placeholder="Search"
+                        oninput="onFilterMeme(this.value)">
+                    <datalist id="meme-key-words">
+                        <option value="funny"></option>
+                        <option value="surprised"></option>
+                        <option value="happy"></option>
+                        <option value="success"></option>
+                        <option value="mock"></option>
+                        <option value="dogs"></option>
+                        <option value="animal"></option>
+                        <option value="sleep"></option>
+                        <option value="baby"></option>
+                    </datalist>
                 </div>
                 <div class="keywords-containter"></div>
             </section>
@@ -91,7 +103,7 @@
             </section>
         </main>
     </section>
- 
+
     <section class="saved-page hidden">
         <section class="saved-container"></section>
     </section>

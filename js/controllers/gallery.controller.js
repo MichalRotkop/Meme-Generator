@@ -1,5 +1,7 @@
 'use strict'
 
+var gFilterVal = ''
+
 function onInit() {
     renderGallery()
     const elBtn = document.querySelector('.gallery-btn')
@@ -7,7 +9,7 @@ function onInit() {
 }
 
 function renderGallery() {
-    const imgs = getImgs()
+    const imgs = getImgs(gFilterVal)
     const strLabel = `<label class="upload-label" for="upload-file">Upload Image</label>
     <input class="upload-btn" type="file" id="upload-file" name="img" 
     onchange="onUploadImg(event)">`
@@ -21,38 +23,6 @@ function renderGallery() {
 function onImgSelect(id, txt, color, outline, font, size) {
     setMeme(id, txt, color, outline, font, size)
     initEditor()
-}
-
-function onRandomizeMeme() {
-    const imgs = getImgs()
-    const randomImgIdx = getRandomInt(0, imgs.length)
-    const id = imgs[randomImgIdx].id
-
-    const { txt, color, outline, font } = setRandomLineProp()
-
-    onImgSelect(id, txt, color, outline, font)
-
-    if (Math.random() > 0.6) {
-        const { txt, color, outline, font } = setRandomLineProp()
-        const newLine = _createLine(txt, color, outline, font, true)
-        onAddLine(newLine)
-    }
-
-    removeActive()
-    const elBtn = document.querySelector('.rand-btn')
-    elBtn.classList.add('active')
-}
-
-function setRandomLineProp() {
-    const fonts = getFonts()
-    const randomFontIdx = getRandomInt(0, fonts.length)
-
-    return {
-        txt: makeLorem(getRandomInt(2, 6)),
-        color: getRandomColor(),
-        outline: getRandomColor(),
-        font: fonts[randomFontIdx]
-    }
 }
 
 function onUploadImg(ev) {
@@ -70,5 +40,16 @@ function loadImageFromInput(ev, onImageReady) {
     }
     reader.readAsDataURL(ev.target.files[0])
 }
+
+function onFilterMeme(val) {
+    gFilterVal = val
+    renderGallery()
+    // filterMeme(val)
+
+}
+
+// function onFilterMeme(val) {
+//     filterMeme(val)
+// }
 
 
