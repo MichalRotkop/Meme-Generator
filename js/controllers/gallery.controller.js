@@ -4,6 +4,7 @@ var gFilterVal
 
 function onInit() {
     gFilterVal = ''
+    resetSearchInput()
     renderGallery()
     const elBtn = document.querySelector('.gallery-btn')
     elBtn.classList.add('active')

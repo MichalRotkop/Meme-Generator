@@ -38,6 +38,7 @@ function toggleMenu() {
 
 function switchToEditor() {
     removeActive()
+
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')
     
@@ -50,11 +51,10 @@ function switchToEditor() {
 
 function switchToGallery() {
     removeActive()
+    onInit()
+
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.remove('hidden')
-
-    const elBtn = document.querySelector('.gallery-btn')
-    elBtn.classList.add('active')
     
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.add('hidden')
@@ -65,6 +65,7 @@ function switchToGallery() {
 
 function switchToSaved() {
     removeActive()
+
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')
 
@@ -81,4 +82,9 @@ function switchToSaved() {
 function removeActive() {
     const elNavBtns = document.querySelectorAll('.nav-btn')
     elNavBtns.forEach(elBtn => elBtn.classList.remove('active'))
+}
+
+function resetSearchInput() {
+    const elInput = document.querySelector('.filter-input')
+    elInput.value = ''
 }
