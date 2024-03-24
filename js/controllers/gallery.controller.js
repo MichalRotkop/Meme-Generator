@@ -2,6 +2,8 @@
 
 function onInit() {
     renderGallery()
+    const elBtn = document.querySelector('.gallery-btn')
+    elBtn.classList.add('active')
 }
 
 function renderGallery() {
