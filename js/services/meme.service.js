@@ -23,6 +23,8 @@ function setMeme(id, txt, color, outline, font, size) {
     gMeme.lines.push(line)
 }
 
+
+
 function addLine(randomLine) {
     const { lines, selectedLineIdx } = gMeme
     if (!lines.length) {
@@ -62,6 +64,24 @@ function setSelectedLineIdx(offsetX, offsetY) {
 
 function saveTxtMarkPos(x, y, width, height, idx) {
     gMeme.lines[idx].markPos = { x, y, width, height }
+}
+
+function setLineDrag(isDrag) {
+    const { lines, selectedLineIdx } = gMeme
+    if (selectedLineIdx === -1) return
+    lines[selectedLineIdx].isDrag = isDrag
+}
+
+function getSelectedLineIsDrag() {
+    const { selectedLineIdx, lines } = gMeme
+    if (selectedLineIdx === -1) return null
+    return lines[selectedLineIdx].isDrag
+}
+
+function moveLine(dx, dy) {
+    const { selectedLineIdx, lines } = gMeme
+    lines[selectedLineIdx].pos.x += dx
+    lines[selectedLineIdx].pos.y += dy
 }
 
 function switchLine() {
@@ -161,6 +181,7 @@ function _createLine(txt, color, outline, font, size) {
     const line = {
         pos: { x: 40, y: 80 },
         markPos: {},
+        isDrag: false,
         txt: txt || 'Add Text Here',
         size: size || 45,
         color: color || 'white',

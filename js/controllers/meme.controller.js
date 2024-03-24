@@ -3,6 +3,9 @@
 let gElCanvas
 let gCtx
 
+let gStartPos
+const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
+
 function initEditor() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -23,9 +26,77 @@ function renderMeme() {
 }
 
 function setEventListeners() {
+    addMouseListeners()
+    addTouchListeners()
+
     gElCanvas.addEventListener('click', onMemeClick)
     window.addEventListener('keypress', onTypeKeyboard)
     window.addEventListener('resize', () => resizeCanvas())
+}
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
+function onDown(ev) {
+    onMemeClick(ev)
+
+    const { selectedLineIdx } = getMeme()
+    if (selectedLineIdx === -1) return
+
+    setLineDrag(true)
+    gElCanvas.style.cursor = 'move'
+}
+
+function onMove(ev) {
+    const isDrag = getSelectedLineIsDrag()
+    if (!isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+
+    moveLine(dx, dy)
+    gStartPos = pos
+
+    renderMeme()
+}
+
+function onUp() {
+    setLineDrag(false)
+    gElCanvas.style.cursor = 'pointer'
+}
+
+function onMemeClick(ev) {
+    gStartPos = getEvPos(ev)
+    setSelectedLineIdx(gStartPos.x, gStartPos.y)
+
+    renderEditorInputs()
+    renderMeme()
+}
+
+function getEvPos(ev) {
+    if (TOUCH_EVENTS.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        return {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    } else {
+        return {
+            x: ev.offsetX,
+            y: ev.offsetY,
+        }
+    }
 }
 
 function resizeCanvas() {
@@ -107,16 +178,6 @@ function renderEditorInputs() {
     elStrokeClr.style.color = getStrokeColor()
     elFillClr.style.color = getFillColor()
     elFont.value = getSelectedFont().toLowerCase()
-}
-
-function onMemeClick(ev) {
-    const { offsetX, offsetY } = ev
-    console.log('offsetX, offsetY:', offsetX, offsetY)
-
-    setSelectedLineIdx(offsetX, offsetY)
-
-    renderEditorInputs()
-    renderMeme()
 }
 
 function markSelectedTxt() {
