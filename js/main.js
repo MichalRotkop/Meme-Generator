@@ -5,13 +5,13 @@ function onRandomizeMeme() {
     const randomImgIdx = getRandomInt(0, imgs.length)
     const id = imgs[randomImgIdx].id
 
-    const { txt, color, outline, font } = setRandomLineProp()
+    const { txt, color, outline, font, size } = setRandomLineProp()
 
-    onImgSelect(id, txt, color, outline, font)
+    onImgSelect(id, txt, color, outline, font, size)
 
     if (Math.random() > 0.6) {
-        const { txt, color, outline, font } = setRandomLineProp()
-        const newLine = _createLine(txt, color, outline, font, true)
+        const { txt, color, outline, font, size } = setRandomLineProp()
+        const newLine = _createLine(txt, color, outline, font, size, true)
         onAddLine(newLine)
     }
 
@@ -28,7 +28,8 @@ function setRandomLineProp() {
         txt: makeLorem(getRandomInt(2, 6)),
         color: getRandomColor(),
         outline: getRandomColor(),
-        font: fonts[randomFontIdx]
+        font: fonts[randomFontIdx],
+        size: getRandomInt(43, 52)
     }
 }
 
@@ -41,7 +42,7 @@ function switchToEditor() {
 
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')
-    
+
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.remove('hidden')
 
@@ -55,7 +56,7 @@ function switchToGallery() {
 
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.remove('hidden')
-    
+
     const elEditor = document.querySelector('.editor-page')
     elEditor.classList.add('hidden')
 

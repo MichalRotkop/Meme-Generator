@@ -39,6 +39,7 @@ function addLine(randomLine) {
     } else if (lines.length === 1) {
         var newLine = randomLine || structuredClone(lines[0])
         newLine.pos.y = gMeme.isCanvasSmall ? 300 : 450
+        console.log('newLine.pos.y :',newLine.pos.y )
     } else if (lines.length >= 2) {
         if (selectedLineIdx === -1) var newLine = structuredClone(lines[lines.length - 1])
         else var newLine = structuredClone(lines[selectedLineIdx])
