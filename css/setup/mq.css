@@ -133,6 +133,7 @@
 
     .upload-label {
         font-size: 1.5em;
+        max-height: 12.2em;
     }
 }
 
