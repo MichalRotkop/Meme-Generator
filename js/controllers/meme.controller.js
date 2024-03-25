@@ -304,12 +304,21 @@ function onDownloadMeme() {
 function onSaveMeme() {
     unMarkLine()
     renderMeme()
+    flashSaveMsg()
 
     setTimeout(() => {
         const dataUrl = gElCanvas.toDataURL()
         updateDataUrl(dataUrl)
         saveMeme()
     }, 200);
+}
+
+function flashSaveMsg() {
+    const elModal = document.querySelector('.message-modal')
+    elModal.classList.add('active')
+    setTimeout(() => {
+        elModal.classList.remove('active')
+    }, 2000)
 }
 
 function onShareMeme() {

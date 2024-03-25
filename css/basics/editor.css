@@ -186,3 +186,25 @@ canvas,
     content: '\f064';
     padding-inline-end: 10px;
 }
+
+.message-modal {
+    position: fixed;
+    top: 140px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 90px;
+    width: 240px;
+    font-size: 1em;
+    border-radius: 35px;
+    background-color: var(--clr-base);
+    transform: translateX(100%);
+    transition: transform 0.7s;
+}
+
+.message-modal.active {
+    color: var(--clr--4);
+    transform: translateX(0);
+}
