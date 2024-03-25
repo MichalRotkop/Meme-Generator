@@ -10,6 +10,8 @@ function initEditor() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
+    dataUrl(gElCanvas.toDataURL('image/jpeg'))
+
     setEventListeners()
     renderMeme()
     renderFonts()

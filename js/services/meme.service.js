@@ -3,7 +3,23 @@
 var gImgs = _createImgs()
 var gMeme
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+var gDemoMemes = _createDemoSavedMemes()
+
+var gKeywordSearchCountMap = {
+    'surprised': 0.8,
+    'funny': 1.4,
+    'happy': 0.7,
+    'success': 0.9,
+    'animal': 1.1,
+}
+
+function getKeywordCountMap() {
+    return gKeywordSearchCountMap
+}
+
+function updateKeywordSize(key) {
+    gKeywordSearchCountMap[key] += 0.05
+}
 
 const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI', 'monospace', 'cursive']
 const MEMES_KEY = 'memeDB'
@@ -191,6 +207,16 @@ function addImg(img) {
     _saveImgs(gImgs)
 }
 
+// function _createKeyWordsMap() {
+//     return gImgs.reduce((acc, img) => {
+//         img.keywords.forEach(keyword => {
+//             if (!acc[keyword]) acc[keyword] = 1
+//             else acc[keyword]++
+//         })
+//         return acc
+//     }, {})
+// }
+
 function _createImgs() {
     return [
         { id: 1, url: 'img/1.jpg', keywords: ['funny', 'mock', 'success'] },
@@ -308,6 +334,10 @@ function _saveMemes(memes) {
 
 function _saveImgs(imgs) {
     saveToStorage(IMGS_KEY, imgs)
+}
+
+function dataUrl(url) {
+    console.log('url:',url)
 }
 
 

@@ -93,13 +93,13 @@
         font-size: 1.4em;
     }
 
-    .filter-containter::after {
+    .filter-container::after {
         font-size: 2em;
     }
 
-    .keywords-containter {
+    .keywords-container {
         border-radius: 24px;
-        height: 40px;
+        font-size: 1em;
     }
 
     .saved-container {
@@ -166,18 +166,16 @@
 
     .filter-search-section {
         flex-direction: row;
-        gap: 20px;
         padding: 30px;
     }
 
     .filter-input {
-        width: 550px;
+        width: 350px;
     }
 
-    .keywords-containter {
+    .keywords-container {
         flex-grow: 1;
         border-radius: 27px;
-        height: 55px;
     }
 }
 

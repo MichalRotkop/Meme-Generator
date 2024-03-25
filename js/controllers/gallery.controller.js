@@ -6,6 +6,7 @@ function onInit() {
     gFilterVal = ''
     resetSearchInput()
     renderGallery()
+    renderKeywords()
     const elBtn = document.querySelector('.gallery-btn')
     elBtn.classList.add('active')
 }
@@ -34,7 +35,6 @@ function onUploadImg(ev) {
 
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
-
     reader.onload = ev => {
         let img = new Image()
         img.src = ev.target.result
@@ -46,6 +46,26 @@ function loadImageFromInput(ev, onImageReady) {
 function onFilterMeme(val) {
     gFilterVal = val
     renderGallery()
+    renderKeywords()
+}
+
+function renderKeywords() {
+    var strHtmls = ''
+    const keywords = getKeywordCountMap()
+
+    for (const keyword in keywords) {
+        strHtmls += `<button class="keyword-btn" style="font-size: ${keywords[keyword]}em;" 
+        onclick="onClickKeyword(this.value)" value="${keyword}">${keyword}</button>`
+    }
+    const elContainer = document.querySelector('.keywords-container')
+    elContainer.innerHTML = strHtmls
+}
+
+function onClickKeyword(val) {
+    updateKeywordSize(val)
+    const elInput = document.querySelector('.filter-input')
+    elInput.value = val
+    onFilterMeme(val)
 }
 
 
