@@ -3,22 +3,12 @@
 var gImgs = _createImgs()
 var gMeme
 
-var gDemoMemes = _createDemoSavedMemes()
-
 var gKeywordSearchCountMap = {
     'surprised': 0.8,
     'funny': 1.4,
     'happy': 0.7,
     'success': 0.9,
     'animal': 1.1,
-}
-
-function getKeywordCountMap() {
-    return gKeywordSearchCountMap
-}
-
-function updateKeywordSize(key) {
-    gKeywordSearchCountMap[key] += 0.05
 }
 
 const FONTS = ['Impact', 'Arial', 'Verdana', 'Courier New', 'Trebuchet MS', 'Lucida Sans', 'Times New Roman', 'Segoe UI', 'monospace', 'cursive']
@@ -202,20 +192,17 @@ function filterMeme(value) {
 
 function addImg(img) {
     const newImg = _createImg(img)
-
     gImgs.unshift(newImg)
     _saveImgs(gImgs)
 }
 
-// function _createKeyWordsMap() {
-//     return gImgs.reduce((acc, img) => {
-//         img.keywords.forEach(keyword => {
-//             if (!acc[keyword]) acc[keyword] = 1
-//             else acc[keyword]++
-//         })
-//         return acc
-//     }, {})
-// }
+function getKeywordCountMap() {
+    return gKeywordSearchCountMap
+}
+
+function updateKeywordSize(key) {
+    gKeywordSearchCountMap[key] += 0.05
+}
 
 function _createImgs() {
     return [
@@ -284,48 +271,19 @@ function updateDataUrl(dataUrl) {
 
 function saveMeme() {
     const memes = getSavedMemes()
+
     memes.push(gMeme)
     _saveMemes(memes)
 }
 
 function loadMeme(meme) {
     gMeme = meme
-    console.log('gMeme:', gMeme)
 }
 
 function getSavedMemes() {
     var memes = loadFromStorage(MEMES_KEY)
-
-    if (!memes || !memes.length) memes = _createDemoSavedMemes()
-    _saveMemes(memes)
+    if (!memes) memes = []
     return memes
-}
-
-function _createDemoSavedMemes() {
-    const savedMemes = [
-        _createDemoSavedMeme(8, 'more or less a pleasure', '#3b8af1', '#3edde0', 'arial', 47),
-        _createDemoSavedMeme(9, 'burn very nice', '#fdb768', '#18536d', 'impact', 47),
-        _createDemoSavedMeme(4, 'do not do not', '#2016DF', '#0AB73E', 'impact')
-    ]
-    savedMemes[0].lines.push(_createLine('from cats', '#8df13b', '#e05e3e', 'Impact', 53))
-    savedMemes[2].lines.push(_createLine('story it', '#CB35A6', '#365BBE', 'Verdana', 51))
-
-    return savedMemes
-}
-
-function _createDemoSavedMeme(id, txt, color, outline, font, size) {
-    const img = getImgById(id)
-    const savedMeme = {
-        selectedImgId: img.id,
-        selectedImgUrl: img.url,
-        selectedLineIdx: 0,
-        isCanvasSmall: false,
-        dataUrl: '',
-        lines: []
-    }
-    const line = _createLine(txt, color, outline, font, size)
-    savedMeme.lines.push(line)
-    return savedMeme
 }
 
 function _saveMemes(memes) {
@@ -336,8 +294,45 @@ function _saveImgs(imgs) {
     saveToStorage(IMGS_KEY, imgs)
 }
 
-function dataUrl(url) {
-    console.log('url:',url)
-}
+
+
+// function _createDemoSavedMemes() {
+//     const savedMemes = [
+//         _createDemoSavedMeme(8, 'more or less a pleasure', '#3b8af1', '#3edde0', 'arial', 47),
+//         _createDemoSavedMeme(9, 'burn very nice', '#fdb768', '#18536d', 'impact', 47),
+//         _createDemoSavedMeme(4, 'do not do not', '#2016DF', '#0AB73E', 'impact')
+//     ]
+//     savedMemes[0].lines.push(_createLine('from cats', '#8df13b', '#e05e3e', 'Impact', 53))
+//     savedMemes[2].lines.push(_createLine('story it', '#CB35A6', '#365BBE', 'Verdana', 51))
+
+//     return savedMemes
+// }
+
+// function _createDemoSavedMeme(id, txt, color, outline, font, size) {
+//     const img = getImgById(id)
+//     const savedMeme = {
+//         selectedImgId: img.id,
+//         selectedImgUrl: img.url,
+//         selectedLineIdx: 0,
+//         isCanvasSmall: false,
+//         dataUrl: '',
+//         lines: []
+//     }
+//     const line = _createLine(txt, color, outline, font, size)
+//     savedMeme.lines.push(line)
+//     return savedMeme
+// }
+
+// function _createKeyWordsMap() {
+//     return gImgs.reduce((acc, img) => {
+//         img.keywords.forEach(keyword => {
+//             if (!acc[keyword]) acc[keyword] = 1
+//             else acc[keyword]++
+//         })
+//         return acc
+//     }, {})
+// }
+
+
 
 
