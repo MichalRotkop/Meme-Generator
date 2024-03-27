@@ -39,6 +39,7 @@ function toggleMenu() {
 
 function switchToEditor() {
     removeActive()
+    document.querySelector('body').classList.remove('menu-open')
 
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')
@@ -52,6 +53,8 @@ function switchToEditor() {
 
 function switchToGallery() {
     removeActive()
+    document.querySelector('body').classList.remove('menu-open')
+
     onInit()
 
     const elGallery = document.querySelector('.gallery-page')
@@ -66,6 +69,7 @@ function switchToGallery() {
 
 function switchToSaved() {
     removeActive()
+    document.querySelector('body').classList.remove('menu-open')
 
     const elGallery = document.querySelector('.gallery-page')
     elGallery.classList.add('hidden')

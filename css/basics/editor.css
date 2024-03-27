@@ -88,6 +88,7 @@ canvas,
 .font-btn,
 .font-btn input {
     cursor: pointer;
+    
 }
 
 .big-font::after {
@@ -105,7 +106,6 @@ canvas,
 .font-btn.fill-clr,
 .font-btn.stroke-clr {
     position: relative;
-
 }
 
 .stroke-clr-input,

@@ -116,7 +116,7 @@ function onTypeKeyboard() {
     } else {
         const elInput = document.querySelector('.txt-input')
         elInput.focus()
-        elInput.setSelectionRange(elInput.value.length, elInput.value.length)
+        // elInput.setSelectionRange(elInput.value.length, elInput.value.length)
     }
 }
 
